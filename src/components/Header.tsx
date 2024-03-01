@@ -4,13 +4,18 @@ import { useSelector, useDispatch } from "react-redux";
 
 import viteLogo from "../../../../../../../vite.svg";
 import reactLogo from "../assets/react.svg";
-
 import "../App.css";
-
 import { increment } from "../slices/firstSlice";
 
+interface RootState {
+  first: {
+    value: number;
+  };
+}
+// это временное решение размещения интерфейса, думаю как все скомпановать
+
 const Header: React.FC = () => {
-  const count = useSelector((state) => state.first.value);
+  const count = useSelector((state: RootState) => state.first.value);
   const dispatch = useDispatch();
 
   useEffect(() => {

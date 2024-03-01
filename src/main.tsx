@@ -4,15 +4,18 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 
 import App from "./App.tsx";
-
 import "./index.css";
-
 import store from "./slices/slices.ts";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>,
-);
+const rootElement = document.getElementById("root");
+if (rootElement !== null) {
+  ReactDOM.createRoot(rootElement).render(
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>,
+  );
+} else {
+  console.error("Failed to find the root element");
+}
