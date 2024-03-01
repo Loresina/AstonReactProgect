@@ -1,0 +1,58 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "standard-with-typescript",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+          },
+          "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "react", "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error",
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
+        "no-console": "warn",
+        "react/jsx-indent": ["warn", 2],
+        "react/jsx-curly-spacing": "warn",
+        "curly": ["error", "all"],
+        "semi": ["error", "always"],
+        "import/prefer-default-export": "off",
+        "no-unused-expressions": "error",
+        "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
+        "import/order": [
+            "error",
+            {
+              "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
+              "pathGroups": [
+                  {
+                    "pattern": "react",
+                    "group": "external",
+                    "position": "before"
+                  }
+              ],
+              "pathGroupsExcludedImportTypes": ["react"],
+              "newlines-between": "always",
+              "alphabetize": {
+                "order": "asc", /* Valid options are ['ignore', 'asc', 'desc'] */
+                "caseInsensitive": true
+              }
+            }
+        ]
+        
+    }
+}
+
+
+

@@ -1,23 +1,21 @@
-import {
-  BrowserRouter, Routes, Route
-} from 'react-router-dom'
-import { Header } from './components/Header'
-import { Gallery } from './components/Gallery'
+import React from "react";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+import { Gallery } from "./components/Gallery";
+import { Header } from "./components/Header";
+
+const App: React.FC = () => {
   // const [count, setCount] = useState(0)
-
-
 
   return (
     <BrowserRouter>
-    <Header />
+      <Header />
       <Routes>
         <Route path="/" element={<Gallery />} />
-    </Routes>
+      </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default App
+export default App;
