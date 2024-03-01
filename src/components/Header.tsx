@@ -20,7 +20,6 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const key = import.meta.env.VITE_KEY;
-    console.log("hi");
 
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=flowers&orderBy=newest&key=${key}`,
@@ -36,14 +35,6 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div>
-        {/* <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a> */}
-      </div>
       <h3>Redux toolkit считает это</h3>
       <div className="card">
         <button onClick={() => dispatch(increment())}>count is {count}</button>
