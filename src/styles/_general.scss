@@ -1,0 +1,42 @@
+$wrap: 1920px;
+$container: 80.3%;
+$marg: 0 auto;
+$white: #FFF;
+$black: #1C1C1C;
+$blue: #3b7cb9;
+$grey: #e2e8ee;;
+
+// $title-font: 'Oranienbaum', serif;
+// $main-font: 'Noto Sans', sans-serif;
+$text: 14px;
+
+// $line-height: 1.3;
+
+@mixin flex($jc, $ai) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+p {
+  color: palevioletred;
+  text-decoration: overline;
+  display: none;
+}
+
+.wrapper {
+    position: relative;
+    max-width: $wrap;
+    margin: $marg;
+
+    outline: 1px solid red;
+  }
+
+.container {
+  position: relative;
+  padding: 25px 15px;
+  max-width: $container;
+  margin: $marg;
+
+  outline: 1px solid purple;
+}

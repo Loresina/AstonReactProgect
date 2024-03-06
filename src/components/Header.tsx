@@ -1,45 +1,31 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { useSelector, useDispatch } from "react-redux";
-
-// import viteLogo from "../../../../../../../vite.svg";
-// import reactLogo from "../assets/react.svg";
-import "../App.css";
-import { increment } from "../slices/firstSlice";
-
-interface RootState {
-  first: {
-    value: number;
-  };
-}
-// это временное решение размещения интерфейса, думаю как все скомпановать
+import bookLogo from "../assets/react.svg";
 
 const Header: React.FC = () => {
-  const count = useSelector((state: RootState) => state.first.value);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const key = import.meta.env.VITE_KEY;
-
-    fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=flowers&orderBy=newest&key=${key}`,
-    )
-      .then(async (resp) => await resp.json())
-      .then((data) => {
-        console.log(data.items);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
-
   return (
-    <>
-      <h3>Redux toolkit считает это</h3>
-      <div className="card">
-        <button onClick={() => dispatch(increment())}>count is {count}</button>
+    <header className="wrapper">
+      <div className="container header">
+        <a href="./" target="_blank" rel="noreferrer">
+          <img src={bookLogo} className="header_logo" alt="Book logo" />
+        </a>
+
+        <input></input>
+
+        {/* это должен быть компонент nav и должен зависеть от условий авторизации. Где это проверять? Может прямо здесь? */}
+
+        <nav className="nav">
+          <a href="./" target="_blank" rel="noreferrer">
+            Login
+          </a>
+          <a href="./" target="_blank" rel="noreferrer">
+            Registration
+          </a>
+        </nav>
+
+        <button>Day/Night</button>
       </div>
-    </>
+    </header>
   );
 };
 

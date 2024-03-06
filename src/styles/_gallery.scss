@@ -1,0 +1,10 @@
+.gallery {
+    text-align: center;
+}
+
+.cards {
+    @include flex(space-between, flex-start);
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-top: 15px;
+}

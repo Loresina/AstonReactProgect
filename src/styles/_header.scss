@@ -1,0 +1,11 @@
+.header {
+  @include flex(space-between, flex-start);
+}
+
+.nav {
+  max-width: 250px;
+
+  @include flex(space-between, flex-start);
+  gap: 30px
+}
+  
