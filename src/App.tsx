@@ -3,8 +3,10 @@ import React from "react";
 // import { useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { MainGallery } from "./components/pages/mainGallery";
-import { SearchGallery } from "./components/pages/searchGallery";
+import { Login } from "./components/pages/Login";
+import { MainGallery } from "./components/pages/MainGallery";
+import { Registration } from "./components/pages/Registration";
+import { SearchGallery } from "./components/pages/SearchGallery";
 import { Header } from "./components/separateComponents/Header";
 import { NotFound } from "./components/separateComponents/NotFound";
 
@@ -12,11 +14,15 @@ const App = (): React.JSX.Element => {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<MainGallery />} />
-        <Route path="/search/:query" element={<SearchGallery />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+      <div className="wrap">
+        <Routes>
+          <Route path="/" element={<MainGallery />} />
+          <Route path="/search/:query" element={<SearchGallery />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

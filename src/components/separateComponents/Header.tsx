@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import bookLogo from "../../assets/react.svg";
+import logo from "../../assets/logo.svg";
 
 const Header: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
@@ -30,8 +30,8 @@ const Header: React.FC = () => {
   return (
     <header className="wrapper">
       <div className="container header">
-        <a href="./" target="_blank" rel="noreferrer">
-          <img src={bookLogo} className="header_logo" alt="Book logo" />
+        <a href="./">
+          <img src={logo} className="header_logo" alt="Book logo" />
         </a>
 
         <form className="search" onSubmit={searchSubmit}>
@@ -58,12 +58,8 @@ const Header: React.FC = () => {
         {/* это должен быть компонент nav и должен зависеть от условий авторизации. Где это проверять? Может прямо здесь? */}
 
         <nav className="nav">
-          <a href="./" target="_blank" rel="noreferrer">
-            Login
-          </a>
-          <a href="./" target="_blank" rel="noreferrer">
-            Registration
-          </a>
+          <a href="./login">Login</a>
+          <a href="./registration">Registration</a>
         </nav>
 
         <button>Day/Night</button>

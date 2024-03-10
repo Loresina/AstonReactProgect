@@ -1,5 +1,9 @@
 .header {
-  @include flex(space-between, center);
+  @include flex(space-around, center);
+}
+
+.header_logo {
+  width: 120px;
 }
 
 .nav {
