@@ -4,8 +4,10 @@ $marg: 0 auto;
 $white: #FFF;
 $black: #1C1C1C;
 $blue: #6562e8;
+$blue-shadow: #4646d3;
 $dark-blue: #2f2f4c;
-$grey: #e2e8ee;;
+$grey: #e2e8ee;
+$red: red;
 
 // $title-font: 'Oranienbaum', serif;
 // $main-font: 'Noto Sans', sans-serif;
@@ -47,6 +49,7 @@ p {
   padding: 25px 15px;
   max-width: $container;
   margin: $marg;
+
   // outline: 1px solid purple;
   // background-image: url("../assets/back.svg");
   // background-repeat: repeat;
