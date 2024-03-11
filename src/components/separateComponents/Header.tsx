@@ -2,12 +2,17 @@ import React, { useRef, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { AuthNav } from "./headerNav/AuthNav";
+import { NotAuthNav } from "./headerNav/NotAuthNav";
 import logo from "../../assets/logo.svg";
+import useAuth from "../../hooks/useAuth";
 
-const Header: React.FC = () => {
+const Header = (): React.JSX.Element => {
   const [inputValue, setInputValue] = useState("");
   const inputFocus = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+
+  const { logStatus } = useAuth();
 
   useEffect(() => {
     if (inputFocus.current !== null) {
@@ -55,12 +60,7 @@ const Header: React.FC = () => {
           />
         </form>
 
-        {/* это должен быть компонент nav и должен зависеть от условий авторизации. Где это проверять? Может прямо здесь? */}
-
-        <nav className="nav">
-          <a href="./login">Login</a>
-          <a href="./registration">Registration</a>
-        </nav>
+        <nav className="nav">{logStatus ? <AuthNav /> : <NotAuthNav />}</nav>
 
         <button>Day/Night</button>
       </div>

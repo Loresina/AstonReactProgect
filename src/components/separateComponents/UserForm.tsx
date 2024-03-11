@@ -1,4 +1,4 @@
-// import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 import { useFormik } from "formik";
 // import { Button, Form, Row, Col, Container, Card } from "react-bootstrap";
@@ -10,14 +10,16 @@ import * as yup from "yup";
 // import routes from "../Routes/routes";
 
 const UserForm = ({ title }: { title: string }): React.JSX.Element => {
-  //   const [showError, setShowError] = useState(false);
-  //   const { logIn } = useContext(AuthContext);
-  //   const navigate = useNavigate();
-  //   const inputFocus = useRef(null);
+  // const [showError, setShowError] = useState(false);
+  // const { logIn } = useContext(AuthContext);
+  // const navigate = useNavigate();
+  const inputFocus = useRef<HTMLInputElement>(null);
 
-  //   useEffect(() => {
-  //     inputFocus.current.focus();
-  //   }, []);
+  useEffect(() => {
+    if (inputFocus.current !== null) {
+      inputFocus.current.focus();
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -25,13 +27,20 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
       password: "",
     },
     validationSchema: yup.object({
-      username: yup.string().required("не верно"),
-      password: yup.string().required("не верно"),
+      username: yup
+        .string()
+        .required("!")
+        .min(3, "! min 3")
+        .max(20, "! max 20"),
+      password: yup
+        .string()
+        .required("!")
+        .min(6, "! min 6")
+        .max(10, "! max 10"),
     }),
     onSubmit: (values) => {
       console.log(
         "проверка логина и пароля, если нет - предложение о регистрации.",
-        values,
       );
     },
   });
@@ -52,27 +61,48 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
         <div className="user-form">
           <h1>{title}</h1>
           <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="username">Enter your name</label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.username}
-              // ref={inputFocus}
-              placeholder="Enter your name"
-            />
-            <label htmlFor="password">Enter your password</label>
-            <input
-              id="password"
-              name="password"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              // ref={inputFocus}
-              placeholder="Enter your password"
-            />
-            <button>{title}</button>
+            <div className="user-form-input">
+              <label htmlFor="username">Enter your name</label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.username}
+                // ref={inputFocus}
+                placeholder="Enter your name"
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.username !== undefined &&
+              formik.errors.username !== undefined ? (
+                <span className="validation-error">
+                  {formik.errors.username}
+                </span>
+              ) : null}
+            </div>
+
+            <div className="user-form-input">
+              <label htmlFor="password">Enter your password</label>
+              <input
+                id="password"
+                name="password"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                placeholder="Enter your password"
+              />
+
+              {/* {console.log(formik.touched.usernsme, formik.errors.user )} */}
+
+              {formik.touched.password !== undefined &&
+              formik.errors.password !== undefined ? (
+                <span className="validation-error">
+                  {formik.errors.password}
+                </span>
+              ) : null}
+            </div>
+
+            <button type="submit">{title}</button>
           </form>
         </div>
       </div>

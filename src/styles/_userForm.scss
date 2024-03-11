@@ -49,5 +49,20 @@ form {
         background: $blue;
         color: $white;
 
+        &:hover {
+            background: $blue-shadow;
+    }
     }
 }
+
+.user-form-input {
+    position: relative;
+}
+
+.validation-error {
+    position: absolute;
+    top: 3em;
+    left: 1em;
+    color: $red;
+}
+
