@@ -3,10 +3,10 @@ import React from "react";
 // import { useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Login } from "./components/pages/SignIn";
 import { MainGallery } from "./components/pages/MainGallery";
-import { Registration } from "./components/pages/SignUp";
 import { SearchGallery } from "./components/pages/SearchGallery";
+import { Login } from "./components/pages/SignIn";
+import { Registration } from "./components/pages/SignUp";
 import { Header } from "./components/separateComponents/Header";
 import { NotFound } from "./components/separateComponents/NotFound";
 import { AuthProvider } from "./context/authProvider";

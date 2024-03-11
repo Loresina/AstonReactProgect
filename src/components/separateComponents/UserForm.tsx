@@ -31,6 +31,7 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
         .oneOf([yup.ref("password")], "passwords must match"),
     }),
     onSubmit: (values) => {
+      console.log(values);
       // 1. проверка - регистрация это или вход.
       // 2. ЕСЛИ ВХОД
       // здесь реализовать запрос на сервер - информация о регистрации пользователя.
