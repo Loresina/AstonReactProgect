@@ -1,18 +1,9 @@
 import React, { useRef, useEffect } from "react";
 
 import { useFormik } from "formik";
-// import { Button, Form, Row, Col, Container, Card } from "react-bootstrap";
-// import { useNavigate, Link } from "react-router-dom";
 import * as yup from "yup";
 
-// import AuthContext from "../Context/AuthContext";
-// import mainImg from "../Img/mainImg.svg";
-// import routes from "../Routes/routes";
-
 const UserForm = ({ title }: { title: string }): React.JSX.Element => {
-  // const [showError, setShowError] = useState(false);
-  // const { logIn } = useContext(AuthContext);
-  // const navigate = useNavigate();
   const inputFocus = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -23,37 +14,35 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
 
   const formik = useFormik({
     initialValues: {
-      username: "",
+      email: "",
       password: "",
+      confirmPassword: "",
     },
     validationSchema: yup.object({
-      username: yup
-        .string()
-        .required("!")
-        .min(3, "! min 3")
-        .max(20, "! max 20"),
+      email: yup.string().email("mast be valid email").required("!"),
       password: yup
         .string()
         .required("!")
         .min(6, "! min 6")
         .max(10, "! max 10"),
+      confirmPassword: yup
+        .string()
+        .required("!")
+        .oneOf([yup.ref("password")], "passwords must match"),
     }),
     onSubmit: (values) => {
-      console.log(
-        "проверка логина и пароля, если нет - предложение о регистрации.",
-      );
+      // 1. проверка - регистрация это или вход.
+      // 2. ЕСЛИ ВХОД
+      // здесь реализовать запрос на сервер - информация о регистрации пользователя.
+      // Если регистрация есть - logIn,
+      // если регистрации нет - сообщение о недачной регистрации.
+      // 2. ЕСЛИ РЕГИСТРАЦИЯ
+      // отправляем на сервер данные о регистрации
+      // затем - logIn
+      // Для запроса регистрации на сервер - сделать Thunk, который будет запускать дальнейшее действие
+      // Или не делать Thunk - не знаю пока.
     },
   });
-
-  // const getPasswordError = () => {
-  //   if (formik.submitCount > 0 && !!formik.errors.password) {
-  //     return formik.errors.password;
-  //   }
-  //   if (showError) {
-  //     return t("loginMistake");
-  //   }
-  //   return false;
-  // };
 
   return (
     <div className="container">
@@ -62,22 +51,22 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
           <h1>{title}</h1>
           <form onSubmit={formik.handleSubmit}>
             <div className="user-form-input">
-              <label htmlFor="username">Enter your name</label>
+              <label htmlFor="email">Enter your name</label>
               <input
-                id="username"
-                name="username"
+                id="email"
+                name="email"
                 type="text"
                 onChange={formik.handleChange}
-                value={formik.values.username}
-                // ref={inputFocus}
+                value={formik.values.email}
+                ref={inputFocus}
                 placeholder="Enter your name"
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.username !== undefined &&
-              formik.errors.username !== undefined ? (
-                <span className="validation-error">
-                  {formik.errors.username}
-                </span>
+
+              {formik.touched.email !== undefined &&
+              formik.errors.email !== undefined &&
+              formik.values.email.length > 0 ? (
+                <span className="validation-error">{formik.errors.email}</span>
               ) : null}
             </div>
 
@@ -90,9 +79,8 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
                 onChange={formik.handleChange}
                 value={formik.values.password}
                 placeholder="Enter your password"
+                onBlur={formik.handleBlur}
               />
-
-              {/* {console.log(formik.touched.usernsme, formik.errors.user )} */}
 
               {formik.touched.password !== undefined &&
               formik.errors.password !== undefined ? (
@@ -102,7 +90,38 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
               ) : null}
             </div>
 
+            {title === "Sign Up" ? (
+              <div className="user-form-input">
+                <label htmlFor="confirmPassword">Confirm your password</label>
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.confirmPassword}
+                  placeholder="Confirm your password"
+                />
+
+                {formik.touched.password !== undefined &&
+                formik.errors.password !== undefined ? (
+                  <span className="validation-error">
+                    {formik.errors.password}
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
+
             <button type="submit">{title}</button>
+
+            {title === "Sign Up" ? (
+              <span>
+                Already registered? <a href="./sighIn">Sign up</a>
+              </span>
+            ) : (
+              <span>
+                You don't have an account? <a href="./signUp">Sign in</a>
+              </span>
+            )}
           </form>
         </div>
       </div>

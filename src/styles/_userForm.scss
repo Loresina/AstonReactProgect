@@ -1,7 +1,7 @@
 .user-form {
     @include flex(space-between, center);
     flex-direction: column;
-    gap: 3em;
+    gap: 2em;
     width: 450px;
     border: 2px solid $blue;
     border-radius: 1.5em;
@@ -12,7 +12,7 @@
 .not-found {
     @include flex(space-between, center);
     flex-direction: column;
-    gap: 3em;
+    gap: 2em;
     width: 30%;
     text-align: center;
     padding: 2em;
@@ -21,7 +21,7 @@
 form {
     @include flex(space-between, center);
     flex-direction: column;
-    gap: 3em;
+    gap: 2em;
     width: 70%;
 
     label {

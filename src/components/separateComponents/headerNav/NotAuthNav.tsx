@@ -3,8 +3,8 @@ import React from "react";
 const NotAuthNav = (): React.JSX.Element => {
   return (
     <>
-      <a href="./Login">Login</a>
-      <a href="./Registration">Registration</a>
+      <a href="./signIn">Sign in</a>
+      <a href="./signUp">Sign up</a>
     </>
   );
 };
