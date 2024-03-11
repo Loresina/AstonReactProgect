@@ -116,11 +116,12 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
 
             {title === "Sign Up" ? (
               <span>
-                Already registered? <a href="./sighIn">Sign up</a>
+                Already registered? <a href="./signIn">Sign up</a>
               </span>
             ) : (
               <span>
-                You don't have an account? <a href="./signUp">Sign in</a>
+                You do not have an account?
+                <a href="./signUp">Sign in</a>
               </span>
             )}
           </form>
