@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 
 import { useFormik } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-import { useAppDispatch } from "../../hooks/useAppDispatch";
+// import { useAppDispatch } from "../../hooks/useAppDispatch";
 import useAuth from "../../hooks/useAuth";
 import { addNewUser } from "../../slices/sighUser/addNewUserThunk";
 import { checkAuth } from "../../slices/sighUser/checkAuthThunk";
@@ -15,7 +15,8 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
   const navigate = useNavigate();
   const inputFocus = useRef<HTMLInputElement>(null);
   const { logIn } = useAuth();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const authStatus = useSelector(
     (state: RootState) => state.userInfo.authStatus,
   );

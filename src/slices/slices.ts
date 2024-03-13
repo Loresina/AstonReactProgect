@@ -15,4 +15,4 @@ export default configureStore({
     getDefaultMiddleware().concat([bookSearchApi.middleware, thunk]),
 });
 
-export type AppDispatch = typeof configureStore.dispatch;
+// export type AppDispatch = typeof configureStore.dispatch;
