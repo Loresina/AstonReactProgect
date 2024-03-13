@@ -11,10 +11,10 @@ const userDataSlice = createSlice({
   name: "userInfo",
   initialState,
   reducers: {
-    addFavorites: (state, action) => {
+    addFavorites: () => {
       // state.favorites.push("");
     },
-    addSearchHistory: (state, action) => {
+    addSearchHistory: () => {
       // state.searchHistory.push("");
     },
     authStatus: (state, action) => {
