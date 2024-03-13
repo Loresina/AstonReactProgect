@@ -14,6 +14,10 @@ const Header = (): React.JSX.Element => {
 
   const { logStatus } = useAuth();
 
+  const login = localStorage.getItem("currentUser");
+
+  console.log("logStatus из Head =>", logStatus, "currentUser =>", login);
+
   useEffect(() => {
     if (inputFocus.current !== null) {
       inputFocus.current.focus();
@@ -30,6 +34,7 @@ const Header = (): React.JSX.Element => {
     e.preventDefault();
     navigate(`/search/${encodeURIComponent(inputValue)}`);
     // здесь должно быть сохранение в историю поиска
+    // thunk, который отправляет пост запрос на сервер, потом добавляет данные в стор
   };
 
   return (

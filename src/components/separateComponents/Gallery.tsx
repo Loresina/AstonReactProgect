@@ -3,7 +3,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import { Card } from "./Card";
+// import { checkAuth } from "../../slices/checkAuthThunk";
 import { increment } from "../../slices/firstSlice";
+// import { setError } from "../../slices/usersDataSlice";
 import type { StateBookInfo, RootState } from "../../types/dataTypes";
 
 const Gallery = ({
@@ -22,7 +24,9 @@ const Gallery = ({
         <h1>{title}</h1>
         <h3>Redux Toolkit считает это</h3>
 
+        {/* <button onClick={() => dispatch(setError())}>count is {count}</button> */}
         <button onClick={() => dispatch(increment())}>count is {count}</button>
+
         <div className="cards">
           {books.map((one) => {
             return <Card key={one.id} one={one} />;

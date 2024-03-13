@@ -11,8 +11,11 @@ const firstSlice = createSlice({
     increment: (state) => {
       state.value += 1;
     },
+    ex: (state) => {
+      state.value += 10;
+    },
   },
 });
 
-export const { increment } = firstSlice.actions;
+export const { increment, ex } = firstSlice.actions;
 export default firstSlice.reducer;

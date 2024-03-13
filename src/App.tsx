@@ -16,15 +16,15 @@ const App = (): React.JSX.Element => {
     <BrowserRouter>
       <AuthProvider>
         <Header />
-      </AuthProvider>
 
-      <Routes>
-        <Route path="/" element={<MainGallery />} />
-        <Route path="/search/:query" element={<SearchGallery />} />
-        <Route path="/signIn" element={<Login />} />
-        <Route path="/signUp" element={<Registration />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<MainGallery />} />
+          <Route path="/search/:query" element={<SearchGallery />} />
+          <Route path="/signIn" element={<Login />} />
+          <Route path="/signUp" element={<Registration />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 };

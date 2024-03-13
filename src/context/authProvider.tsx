@@ -5,7 +5,7 @@ import AuthContext from "./authContext";
 const AuthProvider = ({
   children,
 }: {
-  children: React.JSX.Element;
+  children: React.ReactNode;
 }): React.JSX.Element => {
   const login = localStorage.getItem("currentUser");
   const [logStatus, setLogin] = useState(Boolean(login));
@@ -17,13 +17,13 @@ const AuthProvider = ({
     setLogin(false);
   };
 
+  const memoizedValue = useMemo(
+    () => ({ logStatus, logIn, logOut }),
+    [logStatus, logIn, logOut],
+  );
+
   return (
-    <AuthContext.Provider
-      value={useMemo(
-        () => ({ logStatus, logIn, logOut }),
-        [logStatus, logIn, logOut],
-      )}
-    >
+    <AuthContext.Provider value={memoizedValue}>
       {children}
     </AuthContext.Provider>
   );
