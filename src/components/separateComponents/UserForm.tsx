@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-// import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 import useAuth from "../../hooks/useAuth";
 import { addNewUser } from "../../slices/sighUser/addNewUserThunk";
 import { checkAuth } from "../../slices/sighUser/checkAuthThunk";
@@ -15,8 +15,8 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
   const navigate = useNavigate();
   const inputFocus = useRef<HTMLInputElement>(null);
   const { logIn } = useAuth();
-  // const dispatch = useAppDispatch();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  // const dispatch = useDispatch();
   const authStatus = useSelector(
     (state: RootState) => state.userInfo.authStatus,
   );
@@ -56,13 +56,11 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
       const password = values.password;
       switch (title) {
         case "Sign Up":
-          // Вопрос по типизации - линтер говори
-          //
-          dispatch(addNewUser(email, password, logIn, navigate));
+          void dispatch(addNewUser(email, password, logIn, navigate));
           break;
 
         case "Sign In":
-          dispatch(checkAuth(email, password, logIn, navigate));
+          void dispatch(checkAuth(email, password, logIn, navigate));
           break;
 
         default:

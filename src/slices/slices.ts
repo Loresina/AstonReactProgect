@@ -5,7 +5,7 @@ import { bookSearchApi } from "./bookSearch";
 import firstReducer from "./firstSlice";
 import userDataSlice from "../slices/usersDataSlice";
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     first: firstReducer,
     userInfo: userDataSlice,
@@ -15,4 +15,8 @@ export default configureStore({
     getDefaultMiddleware().concat([bookSearchApi.middleware, thunk]),
 });
 
-// export type AppDispatch = typeof configureStore.dispatch;
+export default store;
+
+export type AppStore = typeof store;
+
+export type AppDispatch = AppStore["dispatch"];

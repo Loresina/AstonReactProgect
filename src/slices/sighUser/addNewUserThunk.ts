@@ -1,4 +1,4 @@
-import { fetchPostNewUser } from "../../asServerApi/apiRquests";
+import { fetchPostNewUser } from "../../asServerApi/apiRequests";
 
 const addNewUser = (
   email: string,

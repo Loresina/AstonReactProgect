@@ -1,4 +1,4 @@
-import { fetchGetUserAuth } from "../../asServerApi/apiRquests";
+import { fetchGetUserAuth } from "../../asServerApi/apiRequests";
 
 // вопрос по типизации - описание функций из библиотеки navigate
 

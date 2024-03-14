@@ -3,13 +3,6 @@ import {
   type UserDataAPI,
 } from "../types/asServerAPI/usersDataTypes";
 
-const isExist = (usersExistObj: UsersAPI, email: string): boolean => {
-  if (email in usersExistObj) {
-    return true;
-  }
-  return false;
-};
-
 const fetchGetUserAuth = async (
   email: string,
   password: string,
@@ -23,9 +16,7 @@ const fetchGetUserAuth = async (
 
     const usersExistObj: UsersAPI = JSON.parse(usersExist);
 
-    const currentUser = isExist(usersExistObj, email);
-
-    if (currentUser) {
+    if (email in usersExistObj) {
       const user = usersExistObj[email];
       user.password === password
         ? resolve(usersExistObj[email])
@@ -48,8 +39,8 @@ const fetchPostNewUser = async (
     const usersExist = localStorage.getItem("usersExist");
     if (usersExist !== null) {
       const usersExistObj: UsersAPI = JSON.parse(usersExist);
-      const checkExist = isExist(usersExistObj, email);
-      if (checkExist) {
+
+      if (email in usersExistObj) {
         reject(new Error("404 Bad"));
         return;
       }
