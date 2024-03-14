@@ -1,16 +1,35 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 import { useFormik } from "formik";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import useAuth from "../../hooks/useAuth";
+import { addNewUser } from "../../slices/sighUser/addNewUserThunk";
+import { checkAuth } from "../../slices/sighUser/checkAuthThunk";
+import type { RootState } from "../../types/dataTypes";
+
 const UserForm = ({ title }: { title: string }): React.JSX.Element => {
+  const navigate = useNavigate();
   const inputFocus = useRef<HTMLInputElement>(null);
+  const { logIn } = useAuth();
+  const dispatch = useAppDispatch();
+  // const dispatch = useDispatch();
+  const authStatus = useSelector(
+    (state: RootState) => state.userInfo.authStatus,
+  );
+  const authError = useSelector((state: RootState) => state.userInfo.error);
+  const [auth, setAuth] = useState(authStatus);
 
   useEffect(() => {
     if (inputFocus.current !== null) {
       inputFocus.current.focus();
     }
-  }, []);
+
+    setAuth(authStatus);
+  }, [authStatus]);
 
   const formik = useFormik({
     initialValues: {
@@ -25,23 +44,28 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
         .required("!")
         .min(6, "! min 6")
         .max(10, "! max 10"),
-      confirmPassword: yup
-        .string()
-        .required("!")
-        .oneOf([yup.ref("password")], "passwords must match"),
+      ...(title === "Sign Up" && {
+        confirmPassword: yup
+          .string()
+          .required("!")
+          .oneOf([yup.ref("password")], "passwords must match"),
+      }),
     }),
     onSubmit: (values) => {
-      console.log(values);
-      // 1. проверка - регистрация это или вход.
-      // 2. ЕСЛИ ВХОД
-      // здесь реализовать запрос на сервер - информация о регистрации пользователя.
-      // Если регистрация есть - logIn,
-      // если регистрации нет - сообщение о недачной регистрации.
-      // 2. ЕСЛИ РЕГИСТРАЦИЯ
-      // отправляем на сервер данные о регистрации
-      // затем - logIn
-      // Для запроса регистрации на сервер - сделать Thunk, который будет запускать дальнейшее действие
-      // Или не делать Thunk - не знаю пока.
+      const email = values.email;
+      const password = values.password;
+      switch (title) {
+        case "Sign Up":
+          void dispatch(addNewUser(email, password, logIn, navigate));
+          break;
+
+        case "Sign In":
+          void dispatch(checkAuth(email, password, logIn, navigate));
+          break;
+
+        default:
+          break;
+      }
     },
   });
 
@@ -103,25 +127,26 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
                   placeholder="Confirm your password"
                 />
 
-                {formik.touched.password !== undefined &&
-                formik.errors.password !== undefined ? (
+                {formik.touched.confirmPassword !== undefined &&
+                formik.errors.confirmPassword !== undefined ? (
                   <span className="validation-error">
-                    {formik.errors.password}
+                    {formik.errors.confirmPassword}
                   </span>
                 ) : null}
               </div>
             ) : null}
 
+            {auth === "unsuccess" ? <span>{authError}</span> : null}
+
             <button type="submit">{title}</button>
 
             {title === "Sign Up" ? (
               <span>
-                Already registered? <a href="./signIn">Sign up</a>
+                Already registered? <a href="./signIn">Sign in</a>
               </span>
             ) : (
               <span>
-                You do not have an account?
-                <a href="./signUp">Sign in</a>
+                You do not have an account? <a href="./signUp">Sign up</a>
               </span>
             )}
           </form>

@@ -5,18 +5,16 @@ const normData = (items: BooksInfo[]): StateBookInfo[] => {
     const { authors, categories, imageLinks, title } = item.volumeInfo;
     const { id } = item;
 
-    const currentAuthors =
-      typeof authors === "undefined" ? ["автор не указан"] : authors;
+    const currentAuthors = authors ?? ["автор не указан"];
 
-    const currentTitle = typeof title === "undefined" ? "нет названия" : title;
+    const currentTitle = title ?? "нет названия";
 
-    const сurrentСategories =
-      typeof categories === "undefined" ? ["нет катогорий"] : categories;
+    const сurrentСategories = categories ?? ["нет катогорий"];
 
-    const сurrentImageLinks =
-      typeof imageLinks === "undefined"
-        ? { smallThumbnail: "", thumbnail: "" }
-        : imageLinks;
+    const сurrentImageLinks = imageLinks ?? {
+      smallThumbnail: "",
+      thumbnail: "",
+    };
 
     return {
       id,

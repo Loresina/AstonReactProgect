@@ -1,13 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { thunk } from "redux-thunk";
 
 import { bookSearchApi } from "./bookSearch";
 import firstReducer from "./firstSlice";
+import userDataSlice from "../slices/usersDataSlice";
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     first: firstReducer,
+    userInfo: userDataSlice,
     [bookSearchApi.reducerPath]: bookSearchApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(bookSearchApi.middleware),
+    getDefaultMiddleware().concat([bookSearchApi.middleware, thunk]),
 });
+
+export default store;
+
+export type AppStore = typeof store;
+
+export type AppDispatch = AppStore["dispatch"];

@@ -18,6 +18,12 @@ interface RootState {
   booksInfo: {
     books: StateBookInfo[];
   };
+  userInfo: {
+    favorites: [];
+    searchHistory: [];
+    authStatus: string;
+    error: string;
+  };
 }
 
 export type { StateBookInfo, BooksInfo, RootState };
