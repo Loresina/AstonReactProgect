@@ -40,7 +40,7 @@ const Header = (): React.JSX.Element => {
   return (
     <header className="wrapper">
       <div className="container header">
-        <a href="./">
+        <a href="/">
           <img src={logo} className="header_logo" alt="Book logo" />
         </a>
 

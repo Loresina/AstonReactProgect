@@ -1,10 +1,20 @@
 .card {
+    position: relative;
+
     @include flex(space-between, center);
+    gap: 10px;
     flex-direction: column;
     width: 250px;
-    height: 300px;
+    height: 370px;
     background: $grey;
-    padding: 15px;
+    padding: 20px;
+    padding-bottom: 30px;
+    border-radius: 15px;
+
+    &:hover {
+        background: $grey-shadow;
+        transform: scale(1.01);
+    }
 }
 
 .img {
@@ -17,4 +27,23 @@
     flex-direction: column;
     gap: 15px;
 
+}
+
+.like-button {
+    position: absolute;
+    border: none;
+    background: none;
+    right: 10px;
+    bottom: 5px;
+    border-radius: 3em;
+    
+
+    &:hover {
+        transform: scale(1.2);
+        
+    }
+}
+
+.red {
+    background:$red;
 }

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { thunk } from "redux-thunk";
 
-import { bookSearchApi } from "./bookSearch";
+import { bookSearchApi } from "./bookSearchApi";
 import firstReducer from "./firstSlice";
 import userDataSlice from "../slices/usersDataSlice";
 

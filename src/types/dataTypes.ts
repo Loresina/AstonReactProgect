@@ -22,8 +22,13 @@ interface RootState {
     favorites: [];
     searchHistory: [];
     authStatus: string;
+    authName: string;
     error: string;
   };
 }
 
-export type { StateBookInfo, BooksInfo, RootState };
+interface CardProps {
+  one: StateBookInfo;
+}
+
+export type { StateBookInfo, BooksInfo, RootState, CardProps };

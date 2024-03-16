@@ -7,8 +7,8 @@ import * as yup from "yup";
 
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import useAuth from "../../hooks/useAuth";
-import { addNewUser } from "../../slices/sighUser/addNewUserThunk";
-import { checkAuth } from "../../slices/sighUser/checkAuthThunk";
+import { addNewUser } from "../../slices/signUser/addNewUser";
+import { checkAuth } from "../../slices/signUser/checkAuth";
 import type { RootState } from "../../types/dataTypes";
 
 const UserForm = ({ title }: { title: string }): React.JSX.Element => {
@@ -56,10 +56,12 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
       const password = values.password;
       switch (title) {
         case "Sign Up":
+          console.log("Отправляю нового юзера на регистрацию", email);
           void dispatch(addNewUser(email, password, logIn, navigate));
           break;
 
         case "Sign In":
+          console.log("Регистрирую юзера", email);
           void dispatch(checkAuth(email, password, logIn, navigate));
           break;
 
@@ -89,8 +91,7 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
               />
 
               {formik.touched.email !== undefined &&
-              formik.errors.email !== undefined &&
-              formik.values.email.length > 0 ? (
+              formik.errors.email !== undefined ? (
                 <span className="validation-error">{formik.errors.email}</span>
               ) : null}
             </div>
@@ -125,6 +126,7 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
                   onChange={formik.handleChange}
                   value={formik.values.confirmPassword}
                   placeholder="Confirm your password"
+                  onBlur={formik.handleBlur}
                 />
 
                 {formik.touched.confirmPassword !== undefined &&

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { normData } from "./_normData";
-import { useGetBooksQuery } from "../../slices/bookSearch";
+import { useGetBooksQuery } from "../../slices/bookSearchApi";
 import type { BooksInfo } from "../../types/dataTypes";
 import { Gallery } from "../separateComponents/Gallery";
 

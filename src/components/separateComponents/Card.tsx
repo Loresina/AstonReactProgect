@@ -1,13 +1,31 @@
 import React from "react";
 
-import type { StateBookInfo } from "./Gallery";
+import { useSelector } from "react-redux";
 
-interface CardProps {
-  one: StateBookInfo;
-}
-// это временное решение размещения интерфейсов, думаю как скомпановать типы
+import heart from "../../assets/iconHeard.svg";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { addFavorites } from "../../slices/favorites/addFavorites";
+import type { CardProps, RootState } from "../../types/dataTypes";
 
 const Card = ({ one }: CardProps): React.JSX.Element => {
+  const dispatch = useAppDispatch();
+  const authName = useSelector((state: RootState) => state.userInfo.authName);
+  const favorites: string[] = useSelector(
+    (state: RootState) => state.userInfo.favorites,
+  );
+
+  const addToFavorites = (): void => {
+    console.log("authName", authName, "bookId", one.id);
+    void dispatch(addFavorites(authName, one.id));
+  };
+
+  const checkFavorites = (id: string): boolean => {
+    if (favorites.length > 0) {
+      return favorites.includes(id);
+    }
+    return false;
+  };
+
   return (
     <div className="card">
       <div className="img">
@@ -26,6 +44,14 @@ const Card = ({ one }: CardProps): React.JSX.Element => {
           )}
         </span>
       </div>
+
+      <button
+        type="button"
+        className={`like-button ${checkFavorites(one.id) ? "red" : ""}`}
+        onClick={addToFavorites}
+      >
+        <img src={heart} />
+      </button>
     </div>
   );
 };
