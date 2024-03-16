@@ -3,6 +3,7 @@ import React from "react";
 // import { useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { FavoritesGallery } from "./components/pages/FavoritesGallery";
 import { MainGallery } from "./components/pages/MainGallery";
 import { SearchGallery } from "./components/pages/SearchGallery";
 import { Login } from "./components/pages/SignIn";
@@ -22,6 +23,7 @@ const App = (): React.JSX.Element => {
           <Route path="/search/:query" element={<SearchGallery />} />
           <Route path="/signIn" element={<Login />} />
           <Route path="/signUp" element={<Registration />} />
+          <Route path="/favorites" element={<FavoritesGallery />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AuthProvider>
