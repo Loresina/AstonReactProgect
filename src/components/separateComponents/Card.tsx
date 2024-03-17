@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import heart from "../../assets/iconHeard.svg";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
@@ -9,14 +10,18 @@ import type { CardProps, RootState } from "../../types/dataTypes";
 
 const Card = ({ one }: CardProps): React.JSX.Element => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const authName = useSelector((state: RootState) => state.userInfo.authName);
   const favorites: string[] = useSelector(
     (state: RootState) => state.userInfo.favorites,
   );
 
   const addToFavorites = (): void => {
-    console.log("authName", authName, "bookId", one.id);
-    void dispatch(addFavorites(authName, one.id));
+    if (authName.length > 0) {
+      void dispatch(addFavorites(authName, one.id));
+    } else {
+      navigate("/signIn");
+    }
   };
 
   const checkFavorites = (id: string): boolean => {
