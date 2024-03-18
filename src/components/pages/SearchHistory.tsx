@@ -35,7 +35,7 @@ const SearchHistory = (): React.JSX.Element => {
                         <button
                           type="button"
                           className="history-button"
-                          onClick={(e) => {
+                          onClick={() => {
                             removeRow(one.date);
                           }}
                         >
