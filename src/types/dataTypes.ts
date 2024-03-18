@@ -19,8 +19,8 @@ interface RootState {
     books: StateBookInfo[];
   };
   userInfo: {
-    favorites: [];
-    searchHistory: [];
+    favorites: string[];
+    searchHistory: Array<{ param: string; date: string }>;
     authStatus: string;
     authName: string;
     error: string;

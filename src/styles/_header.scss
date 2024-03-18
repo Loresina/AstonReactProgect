@@ -1,5 +1,6 @@
 .header {
   @include flex(space-around, center);
+  border-bottom: 2px solid $blue;
 }
 
 .header_logo {

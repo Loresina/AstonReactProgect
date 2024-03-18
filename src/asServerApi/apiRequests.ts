@@ -84,7 +84,7 @@ const fetchGetFavorites = async (email: string): Promise<string[]> => {
 const fetchPostFavorites = async (
   email: string,
   id: string,
-): Promise<string[]> => {
+): Promise<string> => {
   return await new Promise((resolve, reject) => {
     if (localStorage.getItem("usersExist") === null) {
       reject(new Error("401 Unauthorized"));
@@ -113,7 +113,76 @@ const fetchPostFavorites = async (
 
       localStorage.setItem("usersExist", JSON.stringify(usersExistObj));
 
-      resolve(usersExistObj[email].favorites);
+      resolve("201 Created");
+    }
+  });
+};
+
+const fetchPostSearchHistory = async (
+  email: string,
+  searchQuery: string,
+  date: string,
+): Promise<string> => {
+  return await new Promise((resolve, reject) => {
+    if (localStorage.getItem("usersExist") === null) {
+      reject(new Error("401 Unauthorized"));
+      return;
+    }
+
+    const usersExist = localStorage.getItem("usersExist");
+    if (usersExist !== null) {
+      const usersExistObj: UsersAPI = JSON.parse(usersExist);
+      const searchHistory = usersExistObj[email].searchHistory;
+      searchHistory.push({ param: searchQuery, date });
+
+      localStorage.setItem("usersExist", JSON.stringify(usersExistObj));
+
+      resolve("201 Created");
+    }
+  });
+};
+
+const fetchGetSearchHistory = async (
+  email: string,
+): Promise<Array<{ param: string; date: string }>> => {
+  return await new Promise((resolve, reject) => {
+    if (localStorage.getItem("usersExist") === null) {
+      reject(new Error("401 Unauthorized"));
+      return;
+    }
+
+    const usersExist = localStorage.getItem("usersExist");
+    if (usersExist !== null) {
+      const usersExistObj: UsersAPI = JSON.parse(usersExist);
+      const searchHistory = usersExistObj[email].searchHistory;
+
+      resolve(searchHistory);
+    }
+  });
+};
+
+const fetchPutSearchHistory = async (
+  email: string,
+  date: string,
+): Promise<string> => {
+  return await new Promise((resolve, reject) => {
+    if (localStorage.getItem("usersExist") === null) {
+      reject(new Error("401 Unauthorized"));
+      return;
+    }
+
+    const usersExist = localStorage.getItem("usersExist");
+    if (usersExist !== null) {
+      const usersExistObj: UsersAPI = JSON.parse(usersExist);
+      const searchHistory = usersExistObj[email].searchHistory;
+      const newSearchHistory = searchHistory.filter(
+        (item) => item.date !== date,
+      );
+      usersExistObj[email].searchHistory = newSearchHistory;
+
+      localStorage.setItem("usersExist", JSON.stringify(usersExistObj));
+
+      resolve("200 OK");
     }
   });
 };
@@ -123,4 +192,7 @@ export {
   fetchPostNewUser,
   fetchGetFavorites,
   fetchPostFavorites,
+  fetchPostSearchHistory,
+  fetchGetSearchHistory,
+  fetchPutSearchHistory,
 };

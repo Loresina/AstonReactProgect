@@ -1,7 +1,7 @@
 interface UserDataAPI {
   password: string;
   favorites: string[];
-  searchHistory: string[];
+  searchHistory: Array<{ param: string; date: string }>;
 }
 
 type UsersAPI = Record<string, UserDataAPI>;

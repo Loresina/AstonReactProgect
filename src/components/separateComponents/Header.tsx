@@ -1,16 +1,23 @@
 import React, { useRef, useEffect, useState } from "react";
 
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { AuthNav } from "./headerNav/AuthNav";
 import { NotAuthNav } from "./headerNav/NotAuthNav";
+import search from "../../assets/iconSearch.svg";
 import logo from "../../assets/logo.svg";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 import useAuth from "../../hooks/useAuth";
+import { addSearchHistory } from "../../slices/searchHistory/addSearchHistory";
+import type { RootState } from "../../types/dataTypes";
 
 const Header = (): React.JSX.Element => {
-  const [inputValue, setInputValue] = useState("");
-  const inputFocus = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState("");
+  const authName = useSelector((state: RootState) => state.userInfo.authName);
+  const inputFocus = useRef<HTMLInputElement>(null);
 
   const { logStatus } = useAuth();
 
@@ -32,9 +39,20 @@ const Header = (): React.JSX.Element => {
 
   const searchSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault();
+
+    if (authName.length > 0) {
+      const searchDate = new Date();
+      const date = `${searchDate.toTimeString().slice(0, 8)},
+      ${searchDate.toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      })}`;
+      void dispatch(addSearchHistory(authName, inputValue, date));
+    }
+
     navigate(`/search/${encodeURIComponent(inputValue)}`);
-    // здесь должно быть сохранение в историю поиска
-    // thunk, который отправляет пост запрос на сервер, потом добавляет данные в стор
   };
 
   return (
@@ -46,12 +64,7 @@ const Header = (): React.JSX.Element => {
 
         <form className="search" onSubmit={searchSubmit}>
           <button type="submit" className="submit-button">
-            <svg width="20" height="20">
-              <path
-                d="m19.026 17.05-3.71-3.7c1.002-1.3 1.704-3 1.704-4.9 0-4.4-3.61-8-8.023-8C4.585.45.975 4.15.975 8.55c0 4.4 3.61 8 8.022 8 1.805 0 3.51-.6 4.914-1.7l3.71 3.7 1.405-1.5Zm-10.029-2.5c-3.309 0-6.017-2.7-6.017-6s2.708-6 6.017-6c3.31 0 6.017 2.7 6.017 6s-2.707 6-6.017 6Z"
-                fill="#000"
-              />
-            </svg>
+            <img src={search} />
           </button>
           <label htmlFor="searchTitle">Start searching</label>
           <input

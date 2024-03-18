@@ -15,8 +15,8 @@ const userDataSlice = createSlice({
     setFavorites: (state, action) => {
       state.favorites = action.payload;
     },
-    addSearchHistory: () => {
-      // state.searchHistory.push("");
+    setSearchHistory: (state, action) => {
+      state.searchHistory = action.payload;
     },
     authStatus: (state, action) => {
       state.authStatus = action.payload;
@@ -30,6 +30,6 @@ const userDataSlice = createSlice({
   },
 });
 
-export const { setFavorites, addSearchHistory, authStatus, setName, setError } =
+export const { setFavorites, setSearchHistory, authStatus, setName, setError } =
   userDataSlice.actions;
 export default userDataSlice.reducer;

@@ -1,0 +1,39 @@
+.history {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.history-row {
+    @include flex(space-between, center);
+    height: 2em;
+    border-bottom: 1px dashed $green;
+
+    & > div {
+        @include flex(space-between, center);
+        gap: 20px;
+    }
+
+    & span {
+        color: $dark-blue;
+        font-size: 16px;
+    }
+
+    &:hover {
+        background: $grey; 
+    }
+}
+
+.history-button {
+    width: 1em;
+    height: 1em;
+    padding-right: 2em;
+    border: none;
+    background: none;
+    color: $green;
+    
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}

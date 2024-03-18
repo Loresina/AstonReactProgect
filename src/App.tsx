@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FavoritesGallery } from "./components/pages/FavoritesGallery";
 import { MainGallery } from "./components/pages/MainGallery";
 import { SearchGallery } from "./components/pages/SearchGallery";
+import { SearchHistory } from "./components/pages/SearchHistory";
 import { Login } from "./components/pages/SignIn";
 import { Registration } from "./components/pages/SignUp";
 import { Header } from "./components/separateComponents/Header";
@@ -24,6 +25,7 @@ const App = (): React.JSX.Element => {
           <Route path="/signIn" element={<Login />} />
           <Route path="/signUp" element={<Registration />} />
           <Route path="/favorites" element={<FavoritesGallery />} />
+          <Route path="/searchHistory" element={<SearchHistory />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AuthProvider>
