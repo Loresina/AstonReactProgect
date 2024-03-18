@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 
-import { normData } from "./_normData";
 import type { RootState, BooksInfo } from "../../types/dataTypes";
+import { normData } from "../_normData";
 import { Gallery } from "../separateComponents/Gallery";
 
 const FavoritesGallery = (): React.JSX.Element => {
