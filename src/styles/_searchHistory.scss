@@ -2,9 +2,6 @@
     @include flex(flex-start, center);
     flex-direction: column;
     gap: 20px;
-
-    // width: 100%;
-
 }
 
 .history-table {
@@ -13,7 +10,6 @@
 
 .history-row {
     @include flex(space-between, center);
-
     height: 2em;
     border-bottom: 1px dashed $green;
 

@@ -7,8 +7,10 @@ import { AuthNav } from "./headerNav/AuthNav";
 import { NotAuthNav } from "./headerNav/NotAuthNav";
 import search from "../../assets/iconSearch.svg";
 import logo from "../../assets/logo.svg";
+import { Suggestions } from "../../components/separateComponents/Suggestion";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import useAuth from "../../hooks/useAuth";
+import { useDebounce } from "../../hooks/useDebounce";
 import { addSearchHistory } from "../../slices/searchHistory/addSearchHistory";
 import type { RootState } from "../../types/dataTypes";
 
@@ -16,6 +18,7 @@ const Header = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
+  const debouncedValue = useDebounce(inputValue, 500);
   const authName = useSelector((state: RootState) => state.userInfo.authName);
   const inputFocus = useRef<HTMLInputElement>(null);
 
@@ -66,16 +69,22 @@ const Header = (): React.JSX.Element => {
           <button type="submit" className="submit-button">
             <img src={search} />
           </button>
-          <label htmlFor="searchTitle">Start searching</label>
-          <input
-            id="searchTitle"
-            name="searchTitle"
-            type="text"
-            onChange={searchFilling}
-            value={inputValue}
-            ref={inputFocus}
-            placeholder="Start searching"
-          />
+          <div className="submit-input">
+            <label htmlFor="searchTitle">Start searching</label>
+            <input
+              id="searchTitle"
+              name="searchTitle"
+              type="text"
+              onChange={searchFilling}
+              value={inputValue}
+              ref={inputFocus}
+              placeholder="Start searching"
+            />
+
+            {inputValue.length > 2 ? (
+              <Suggestions query={debouncedValue} />
+            ) : null}
+          </div>
         </form>
 
         <nav className="nav">{logStatus ? <AuthNav /> : <NotAuthNav />}</nav>
