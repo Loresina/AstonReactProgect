@@ -20,11 +20,14 @@ const SearchHistory = (): React.JSX.Element => {
     <section className="wrapper">
       <div className="container">
         <div className="history">
-          <h1>Search History for {userName}</h1>
-          {history.length === 0 ? (
-            <span>No search history yet.</span>
-          ) : (
-            <div className="">
+          <div>
+            <h1>Search History for {userName}</h1>
+          </div>
+          <div>
+            {history.length === 0 ? <h2>No search history yet.</h2> : null}
+          </div>
+          {history.length === 0 ? null : (
+            <div className="history-table">
               {history
                 .slice()
                 .reverse()

@@ -3,23 +3,34 @@
   border-bottom: 2px solid $blue;
 }
 
-.header_logo {
+.header-logo {
   width: 120px;
 }
 
 .nav {
-  max-width: 250px;
+  max-width: 350px;
 
-  @include flex(space-between, flex-start);
-  gap: 30px
+  @include flex(space-between, center);
+  gap: 30px;
+}
+
+.nav button {
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  background: $blue-shadow;
+  border: none;
+  color: $white;
+
+  &:hover {
+    background: $blue;   
+  }
 }
   
 .search {
   @include flex(center, center);
   width: 50%;
   position: relative;
-
-  // background: white;
 
 
   label {

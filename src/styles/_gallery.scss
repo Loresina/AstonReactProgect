@@ -1,9 +1,11 @@
 .gallery {
-    text-align: center;
+    @include flex(flex-start, center);
+    flex-direction: column;
+    gap: 20px;
 }
 
 .cards {
-    @include flex(space-between, flex-start);
+    @include flex(space-evenly, center);
     gap: 30px;
     flex-wrap: wrap;
     padding-top: 15px;

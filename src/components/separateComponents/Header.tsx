@@ -59,7 +59,7 @@ const Header = (): React.JSX.Element => {
     <header className="wrapper">
       <div className="container header">
         <a href="/">
-          <img src={logo} className="header_logo" alt="Book logo" />
+          <img src={logo} className="header-logo" alt="Book logo" />
         </a>
 
         <form className="search" onSubmit={searchSubmit}>
@@ -79,8 +79,8 @@ const Header = (): React.JSX.Element => {
         </form>
 
         <nav className="nav">{logStatus ? <AuthNav /> : <NotAuthNav />}</nav>
-
-        <button>Day/Night</button>
+        {/* 
+        <button>Day/Night</button> */}
       </div>
     </header>
   );

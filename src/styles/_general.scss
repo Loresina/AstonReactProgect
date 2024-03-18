@@ -22,8 +22,9 @@ body {
   font-size: $text;
 }
 
-h1 {
-  color: $dark-blue;
+a {
+  color: $blue-shadow;
+  font-weight: bold;
 }
 
 @mixin flex($jc, $ai) {
@@ -42,6 +43,7 @@ p {
     position: relative;
     max-width: $wrap;
     margin: $marg;
+
     // outline: 1px solid red;
   }
 

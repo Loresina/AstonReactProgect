@@ -7,7 +7,7 @@ const AuthNav = (): React.JSX.Element => {
   return (
     <>
       <a href="/favorites">Favorites</a>
-      <a href="/searchHistory">Search History</a>
+      <a href="/searchHistory">Search history</a>
       <button
         onClick={() => {
           logOut();

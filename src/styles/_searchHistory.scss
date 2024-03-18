@@ -1,11 +1,19 @@
 .history {
+    @include flex(flex-start, center);
+    flex-direction: column;
+    gap: 20px;
+
+    // width: 100%;
+
+}
+
+.history-table {
     width: 80%;
-    margin: 0 auto;
-    text-align: center;
 }
 
 .history-row {
     @include flex(space-between, center);
+
     height: 2em;
     border-bottom: 1px dashed $green;
 
@@ -13,6 +21,10 @@
         @include flex(space-between, center);
         gap: 20px;
     }
+
+     &  a {
+        color: $green;
+      }
 
     & span {
         color: $dark-blue;

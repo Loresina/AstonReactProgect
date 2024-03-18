@@ -1,8 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-
 import { Card } from "./Card";
-import { increment } from "../../slices/firstSlice";
-import type { StateBookInfo, RootState } from "../../types/dataTypes";
+import type { StateBookInfo } from "../../types/dataTypes";
 
 const Gallery = ({
   title,
@@ -11,16 +8,18 @@ const Gallery = ({
   title: string;
   books: StateBookInfo[];
 }): React.JSX.Element => {
-  const count = useSelector((state: RootState) => state.first.value);
-  const dispatch = useDispatch();
-
   return (
     <section className="wrapper">
       <div className="container gallery">
-        <h1>{title}</h1>
-        <h3>Redux Toolkit считает это</h3>
+        <div>
+          <h1>{title}</h1>
+        </div>
 
-        <button onClick={() => dispatch(increment())}>count is {count}</button>
+        <div>
+          {title === "Your Favorites Gallery" && books.length === 0 ? (
+            <h2>No favorites yet.</h2>
+          ) : null}
+        </div>
 
         <div className="cards">
           {books.map((one) => {
