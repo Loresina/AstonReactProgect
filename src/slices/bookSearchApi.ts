@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+import type { BooksInfo } from "../types/dataTypes";
+
 const key = import.meta.env.VITE_KEY;
 
 export const bookSearchApi = createApi({
@@ -8,7 +10,7 @@ export const bookSearchApi = createApi({
     baseUrl: "https://www.googleapis.com/books/v1/volumes/",
   }),
   endpoints: (builder) => ({
-    getBooks: builder.query({
+    getBooks: builder.query<{ items: BooksInfo[] }, string>({
       query: () => ({
         url: "",
         params: {
@@ -18,7 +20,7 @@ export const bookSearchApi = createApi({
         },
       }),
     }),
-    getBooksSearch: builder.query({
+    getBooksSearch: builder.query<{ items: BooksInfo[] }, string>({
       query: (searchParam) => ({
         url: "",
         params: {
@@ -28,7 +30,7 @@ export const bookSearchApi = createApi({
         },
       }),
     }),
-    getBookById: builder.query({
+    getBookById: builder.query<{ items: BooksInfo[] }, string>({
       query: (id) => `${id}`,
     }),
   }),

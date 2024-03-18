@@ -1,8 +1,7 @@
 import React from "react";
 
-import { normData } from "./_normData";
 import { useGetBooksQuery } from "../../slices/bookSearchApi";
-import type { BooksInfo } from "../../types/dataTypes";
+import { normData } from "../_normData";
 import { Gallery } from "../separateComponents/Gallery";
 
 const MainGallery = (): React.JSX.Element => {
@@ -12,8 +11,7 @@ const MainGallery = (): React.JSX.Element => {
     return <h1>Loading...</h1>;
   }
 
-  const items: BooksInfo[] = data.items;
-  const books = normData(items);
+  const books = normData(data?.items ?? []);
 
   return <Gallery title="This is book Gallery" books={books} />;
 };
