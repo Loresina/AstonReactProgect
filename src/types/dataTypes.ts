@@ -1,13 +1,13 @@
 interface StateBookInfo {
   id: string;
   authors: string[];
-  imageLinks: { smallThumbnail: string; thumbnail: string };
+  imageLinks: { smallThumbnail: string };
   title: string;
 }
 
 interface OneBookInfo {
   authors: string[];
-  imageLinks: { smallThumbnail: string };
+  imageLinks: { smallThumbnail: string; thumbnail: string };
   title: string;
   description: string;
   language: string;
