@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import type { BooksInfo } from "../types/dataTypes";
+import type { BooksInfo, OneBookInfo } from "../types/dataTypes";
 
 const key = import.meta.env.VITE_KEY;
 
@@ -30,8 +30,11 @@ export const bookSearchApi = createApi({
         },
       }),
     }),
-    getBookById: builder.query<{ items: BooksInfo[] }, string>({
+    getBookById: builder.query<OneBookInfo, string>({
       query: (id) => `${id}`,
+      transformResponse: (rawResult: { volumeInfo: OneBookInfo }) => {
+        return rawResult.volumeInfo;
+      },
     }),
   }),
 });

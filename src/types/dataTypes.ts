@@ -1,9 +1,18 @@
 interface StateBookInfo {
   id: string;
   authors: string[];
-  categories: string[];
   imageLinks: { smallThumbnail: string; thumbnail: string };
   title: string;
+}
+
+interface OneBookInfo {
+  authors: string[];
+  imageLinks: { smallThumbnail: string };
+  title: string;
+  description: string;
+  language: string;
+  printedPageCount: number;
+  publishedDate: string;
 }
 
 interface BooksInfo {
@@ -31,4 +40,4 @@ interface CardProps {
   one: StateBookInfo;
 }
 
-export type { StateBookInfo, BooksInfo, RootState, CardProps };
+export type { StateBookInfo, BooksInfo, OneBookInfo, RootState, CardProps };

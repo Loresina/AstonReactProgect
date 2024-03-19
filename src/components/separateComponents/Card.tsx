@@ -16,7 +16,12 @@ const Card = ({ one }: CardProps): React.JSX.Element => {
     (state: RootState) => state.userInfo.favorites,
   );
 
-  const addToFavorites = (): void => {
+  const navigateCurrentBook = (id: string): void => {
+    navigate(`/book/${encodeURIComponent(id)}`);
+  };
+
+  const addToFavorites = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.stopPropagation();
     if (authName.length > 0) {
       void dispatch(addFavorites(authName, one.id));
     } else {
@@ -32,7 +37,12 @@ const Card = ({ one }: CardProps): React.JSX.Element => {
   };
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      onClick={(e) => {
+        navigateCurrentBook(one.id);
+      }}
+    >
       <div className="img">
         <img src={one.imageLinks.smallThumbnail}></img>
       </div>
@@ -53,7 +63,9 @@ const Card = ({ one }: CardProps): React.JSX.Element => {
       <button
         type="button"
         className={`like-button ${checkFavorites(one.id) ? "red" : ""}`}
-        onClick={addToFavorites}
+        onClick={(e) => {
+          addToFavorites(e);
+        }}
       >
         <img src={heart} />
       </button>

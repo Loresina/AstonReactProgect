@@ -19,7 +19,6 @@
 
 .img {
     @include flex(center, center);
-    background: red;
 }
 
 .description {
@@ -35,11 +34,11 @@
     background: none;
     right: 10px;
     bottom: 5px;
-    border-radius: 3em;
-    
+    border-radius: 3em;    
 
     &:hover {
         transform: scale(1.2);
+        background: $red;
     }
 }
 

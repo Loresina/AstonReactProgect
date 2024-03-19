@@ -36,8 +36,6 @@ const Header = (): React.JSX.Element => {
 
   const searchFilling = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);
-    // здесь должна быть реакция на ввод (подсказка допустимых значений)
-    // пока не знаю как сделать
   };
 
   const searchSubmit = (e: React.SyntheticEvent): void => {

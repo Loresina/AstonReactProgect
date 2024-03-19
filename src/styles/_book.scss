@@ -1,0 +1,48 @@
+.book {
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-template-rows: 1fr, 1fr, 1fr, 50px, 50px, 50px;
+    row-gap: 20px;
+    align-items: center;
+}
+
+.grid-padding {
+    padding: 20px;
+}
+
+.book-img {
+    grid-column: 1 / 1;
+    grid-row: 2 / 4;
+    justify-self: center;
+}
+
+.book-title {
+    grid-column: 2 / 4;
+    text-align: center;
+}
+
+.book-description {
+    grid-column: 2 / 4;
+    background: $grey-light;
+    font-size: 20px;
+    line-height: 1.4;    
+}
+
+.book-authors {
+    grid-column: 2 / 4;
+}
+
+.book-pages {
+    grid-column: 2 / 4;
+}
+
+.book-lang {
+    grid-column: 2 / 3;
+    background: $grey;
+}
+
+
+.book-date {
+    grid-column: 3 / 4;
+    background: $grey;
+}
