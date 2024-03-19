@@ -39,7 +39,7 @@ const Card = ({ one }: CardProps): React.JSX.Element => {
   return (
     <div
       className="card"
-      onClick={(e) => {
+      onClick={() => {
         navigateCurrentBook(one.id);
       }}
     >
