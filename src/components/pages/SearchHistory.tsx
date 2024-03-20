@@ -24,7 +24,7 @@ const SearchHistory = (): React.JSX.Element => {
             <h1>Search History for {userName}</h1>
           </div>
           <div>
-            {history.length === 0 ? <h2>No search history yet.</h2> : null}
+            {history.length === 0 ? <h2>no search history yet</h2> : null}
           </div>
           {history.length === 0 ? null : (
             <div className="history-table">

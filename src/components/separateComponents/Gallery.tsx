@@ -3,9 +3,11 @@ import type { StateBookInfo } from "../../types/dataTypes";
 
 const Gallery = ({
   title,
+  message,
   books,
 }: {
   title: string;
+  message: string;
   books: StateBookInfo[];
 }): React.JSX.Element => {
   return (
@@ -13,6 +15,10 @@ const Gallery = ({
       <div className="container gallery">
         <div>
           <h1>{title}</h1>
+        </div>
+
+        <div>
+          <h2>{message}</h2>
         </div>
 
         {/* Мигает надпись. Как избавиться? */}

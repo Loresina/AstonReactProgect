@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 
-import type { RootState, BooksInfo } from "../../types/dataTypes";
-import { normData } from "../_normData";
-import { Gallery } from "../separateComponents/Gallery";
+import { setMessage } from "./_setMessage";
+import type { RootState, BooksInfo } from "../../../types/dataTypes";
+import { normData } from "../../_normData";
+import { Gallery } from "../../separateComponents/Gallery";
 
 const FavoritesGallery = (): React.JSX.Element => {
   const favorites = useSelector((state: RootState) => state.userInfo.favorites);
 
   const [items, setItems] = useState<BooksInfo[]>([]);
+  const [error, setError] = useState<string>("");
 
   const getBook = async (id: string): Promise<BooksInfo> => {
     const resp = await fetch(
-      `https://www.googleapis.com/books/v1/volumes/${id}`,
+      `https://www.googleapis.com/books/v1/volums/${id}`,
     );
     const book = await resp.json();
     return book;
@@ -32,16 +34,24 @@ const FavoritesGallery = (): React.JSX.Element => {
 
           setItems(fetchedBooks);
         } catch (e) {
-          console.error("Error fetching books:", e);
+          setError("error");
         }
       }
     };
     void fetchData();
-  }, [favorites]);
+  }, [favorites, error]);
 
   const books = normData(items);
 
-  return <Gallery title="Your Favorites Gallery" books={books} />;
+  const errorMessage = error.length > 0 ? "something war wrong" : "";
+
+  return (
+    <Gallery
+      title="Your Favorites Gallery"
+      message={setMessage("favorites", books, errorMessage)}
+      books={books}
+    />
+  );
 };
 
 export { FavoritesGallery };
