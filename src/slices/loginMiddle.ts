@@ -8,7 +8,8 @@ const loginMiddle = createListenerMiddleware();
 loginMiddle.startListening({
   actionCreator: setError,
   effect: (action) => {
-    toast.error(action.payload);
+    const message: string = action.payload;
+    toast.error(message);
   },
 });
 
