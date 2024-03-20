@@ -12,7 +12,7 @@ const setMessage = (
   };
 
   if (error.length > 0) {
-    return `something went wrong`;
+    return error;
   }
 
   if (books.length === 0) {

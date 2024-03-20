@@ -6,19 +6,20 @@ import { setMessage } from "./_setMessage";
 import { useGetBooksSearchQuery } from "../../../slices/bookSearchApi";
 import { normData } from "../../_normData";
 import { Gallery } from "../../separateComponents/Gallery";
+import { Loading } from "../../separateComponents/Loading";
 
 const SearchGallery = (): React.JSX.Element => {
   const query = useParams().query ?? "";
   const { data, error, isLoading } = useGetBooksSearchQuery(query);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   const books = normData(data?.items ?? []);
 
   const errorMessage =
-    error !== undefined && error !== null ? "something war wrong" : "";
+    error !== undefined && error !== null ? "something went wrong" : "";
 
   return (
     <Gallery
@@ -29,4 +30,4 @@ const SearchGallery = (): React.JSX.Element => {
   );
 };
 
-export { SearchGallery };
+export default SearchGallery;

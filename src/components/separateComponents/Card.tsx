@@ -44,7 +44,7 @@ const Card = ({ one }: CardProps): React.JSX.Element => {
       }}
     >
       <div className="img">
-        <img src={one.imageLinks.smallThumbnail}></img>
+        <img src={one.imageLinks.smallThumbnail} alt="Book cover"></img>
       </div>
 
       <div className="description">

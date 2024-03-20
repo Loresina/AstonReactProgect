@@ -4,18 +4,19 @@ import { useGetBooksQuery } from "../../../slices/bookSearchApi";
 import { normData } from "../../_normData";
 import { setMessage } from "../../pages/galleries/_setMessage";
 import { Gallery } from "../../separateComponents/Gallery";
+import { Loading } from "../../separateComponents/Loading";
 
 const MainGallery = (): React.JSX.Element => {
   const { data, error, isLoading } = useGetBooksQuery("");
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   const books = normData(data?.items ?? []);
 
   const errorMessage =
-    error !== undefined && error !== null ? "something war wrong" : "";
+    error !== undefined && error !== null ? "something went wrong" : "";
 
   return (
     <Gallery
@@ -26,4 +27,4 @@ const MainGallery = (): React.JSX.Element => {
   );
 };
 
-export { MainGallery };
+export default MainGallery;

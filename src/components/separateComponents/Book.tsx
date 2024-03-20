@@ -2,14 +2,28 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 
+import { Loading } from "./Loading";
 import { useGetBookByIdQuery } from "../../slices/bookSearchApi";
 import { normDataBook } from "../_normDataBook";
 
 const Book = (): React.JSX.Element => {
   const id = useParams().id ?? "";
-  console.log("книга id", id);
 
-  const { data } = useGetBookByIdQuery(id);
+  const { data, error, isLoading } = useGetBookByIdQuery(id);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error !== undefined) {
+    return (
+      <section className="wrapper">
+        <div className="container">
+          <h2>something was wrong</h2>
+        </div>
+      </section>
+    );
+  }
 
   const book = normDataBook(data ?? {});
 
@@ -50,4 +64,4 @@ const Book = (): React.JSX.Element => {
   );
 };
 
-export { Book };
+export default Book;

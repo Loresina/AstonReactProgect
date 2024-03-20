@@ -58,4 +58,4 @@ const SearchHistory = (): React.JSX.Element => {
   );
 };
 
-export { SearchHistory };
+export default SearchHistory;
