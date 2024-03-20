@@ -1,5 +1,6 @@
 import React from "react";
 
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +9,7 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { addFavorites } from "../../slices/favorites/addFavorites";
 import type { RootState } from "../../types/dataTypes";
 
-const LikeButton = ({ id }: { id: string }): React.JSX.Element => {
+const LikeButton: React.FC<{ id: string }> = ({ id }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const authName = useSelector((state: RootState) => state.userInfo.authName);
@@ -43,6 +44,10 @@ const LikeButton = ({ id }: { id: string }): React.JSX.Element => {
       <img src={heart} />
     </button>
   );
+};
+
+LikeButton.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export { LikeButton };
