@@ -10,8 +10,6 @@ const getSearchHistory = (email: string) => {
     try {
       const searchHistory = await fetchGetSearchHistory(email);
 
-      console.log("!!!!!!searchHistory из Thunk", searchHistory);
-
       dispatch({
         type: "userInfo/setSearchHistory",
         payload: searchHistory,

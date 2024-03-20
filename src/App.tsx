@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MyErrorBoundary from "./components/ErrorBoundary";
@@ -31,6 +32,7 @@ const App = (): React.JSX.Element => {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <Toaster />
         <MyErrorBoundary>
           <Header />
 

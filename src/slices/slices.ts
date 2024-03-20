@@ -3,6 +3,7 @@ import { thunk } from "redux-thunk";
 
 import { bookSearchApi } from "./bookSearchApi";
 import firstReducer from "./firstSlice";
+import { loginMiddle } from "./loginMiddle";
 import userDataSlice from "../slices/usersDataSlice";
 
 const store = configureStore({
@@ -12,7 +13,11 @@ const store = configureStore({
     [bookSearchApi.reducerPath]: bookSearchApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([bookSearchApi.middleware, thunk]),
+    getDefaultMiddleware().concat([
+      bookSearchApi.middleware,
+      loginMiddle.middleware,
+      thunk,
+    ]),
 });
 
 export default store;
