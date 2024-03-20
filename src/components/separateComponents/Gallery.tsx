@@ -21,14 +21,6 @@ const Gallery = ({
           <h2>{message}</h2>
         </div>
 
-        {/* Мигает надпись. Как избавиться? */}
-        {/* 
-        <div>
-          {books.length === 0 && title === "Your Favorites Gallery" ? (
-            <h2>No favorites yet.</h2>
-          ) : null}
-        </div> */}
-
         <div className="cards">
           {books.map((one) => {
             return <Card key={one.id} one={one} />;

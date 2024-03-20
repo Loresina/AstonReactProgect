@@ -3,6 +3,7 @@ import React from "react";
 // import { useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// import MyErrorBoundary from "./components/ErrorBoundary";
 import { FavoritesGallery } from "./components/pages/galleries/FavoritesGallery";
 import { MainGallery } from "./components/pages/galleries/MainGallery";
 import { SearchGallery } from "./components/pages/galleries/SearchGallery";
@@ -18,8 +19,9 @@ const App = (): React.JSX.Element => {
   return (
     <BrowserRouter>
       <AuthProvider>
+        {/* <MyErrorBoundary> */}
         <Header />
-
+        {/* </MyErrorBoundary> */}
         <Routes>
           <Route path="/" element={<MainGallery />} />
           <Route path="/search/:query" element={<SearchGallery />} />

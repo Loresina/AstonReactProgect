@@ -63,3 +63,12 @@ p {
   @include flex(center, center);
   height: 80vh;
 }
+
+.error {
+  @include flex(center, flex-start);
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid $red;
+  
+}
