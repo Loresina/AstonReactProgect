@@ -16,12 +16,12 @@ const Gallery = ({
         </div>
 
         {/* Мигает надпись. Как избавиться? */}
-
+        {/* 
         <div>
           {books.length === 0 && title === "Your Favorites Gallery" ? (
             <h2>No favorites yet.</h2>
           ) : null}
-        </div>
+        </div> */}
 
         <div className="cards">
           {books.map((one) => {

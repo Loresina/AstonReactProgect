@@ -1,16 +1,17 @@
 import { useGetBooksSearchQuery } from "../../slices/bookSearchApi";
-import type { StateBookInfo } from "../../types/dataTypes";
 import { normData } from "../_normData";
 
-const Suggestions = ({ query }: { query: string }): React.JSX.Element => {
+const Suggestions = ({
+  query,
+  openBook,
+}: {
+  query: string;
+  openBook: (id: string) => void;
+  setIsSuggestions: (isSuggestions: boolean) => void;
+}): React.JSX.Element => {
   const { data } = useGetBooksSearchQuery(query);
 
   const books = normData(data?.items ?? []);
-
-  const openCard = (book: StateBookInfo): void => {
-    console.log(book);
-    // навигация на карточку книги
-  };
 
   return (
     <div className="suggestion">
@@ -19,7 +20,7 @@ const Suggestions = ({ query }: { query: string }): React.JSX.Element => {
           key={index}
           className="suggestion-item"
           onClick={() => {
-            openCard(book);
+            openBook(book.id);
           }}
         >
           <span>{book.title}</span>

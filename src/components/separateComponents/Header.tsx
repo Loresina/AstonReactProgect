@@ -18,23 +18,43 @@ const Header = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
+  const [isSuggestions, setIsSuggestions] = useState(true);
   const debouncedValue = useDebounce(inputValue, 500);
   const authName = useSelector((state: RootState) => state.userInfo.authName);
   const inputFocus = useRef<HTMLInputElement>(null);
 
   const { logStatus } = useAuth();
 
-  const login = localStorage.getItem("currentUser");
+  // console.log("***********isSuggestions", isSuggestions);
 
-  console.log("logStatus из Head =>", logStatus, "currentUser =>", login);
+  // const login = localStorage.getItem("currentUser");
+  // console.log("logStatus из Head =>", logStatus, "currentUser =>", login);
 
   useEffect(() => {
     if (inputFocus.current !== null) {
       inputFocus.current.focus();
     }
-  }, []);
+
+    const handleClickOutside = (): void => {
+      setIsSuggestions(false);
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isSuggestions]);
+
+  const openBook = (id: string): void => {
+    navigate(`/book/${encodeURIComponent(id)}`);
+    setIsSuggestions(false);
+  };
 
   const searchFilling = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (!isSuggestions) {
+      setIsSuggestions(true);
+    }
     setInputValue(e.target.value);
   };
 
@@ -79,8 +99,12 @@ const Header = (): React.JSX.Element => {
               placeholder="Start searching"
             />
 
-            {inputValue.length > 2 ? (
-              <Suggestions query={debouncedValue} />
+            {inputValue.length > 2 && isSuggestions ? (
+              <Suggestions
+                query={debouncedValue}
+                openBook={openBook}
+                setIsSuggestions={setIsSuggestions}
+              />
             ) : null}
           </div>
         </form>
