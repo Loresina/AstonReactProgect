@@ -20,7 +20,7 @@ const removeSearchHistory = (email: string, date: string) => {
         payload: searchHistory,
       });
     } catch (error) {
-      console.log("error");
+      console.error("remove Search History", error);
     }
   };
 };

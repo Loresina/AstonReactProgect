@@ -17,7 +17,7 @@ const getSearchHistory = (email: string) => {
         payload: searchHistory,
       });
     } catch (error) {
-      console.log("error");
+      console.error("get Search History", error);
     }
   };
 };

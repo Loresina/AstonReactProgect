@@ -21,7 +21,6 @@ const addNewUser =
         type: "userInfo/setName",
         payload: email,
       });
-      // здесь же - установка favorites, searchHistory
     } catch (error) {
       dispatch({
         type: "userInfo/authStatus",

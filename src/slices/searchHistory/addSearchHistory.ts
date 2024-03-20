@@ -20,7 +20,7 @@ const addSearchHistory = (email: string, searchQuery: string, date: string) => {
         payload: searchHistory,
       });
     } catch (error) {
-      console.log("error");
+      console.error("add Search History", error);
     }
   };
 };

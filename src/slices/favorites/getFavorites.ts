@@ -12,7 +12,7 @@ const getFavorites = (email: string) => {
         payload: favorites,
       });
     } catch (error) {
-      console.log("error");
+      console.error("get Favorites", error);
     }
   };
 };

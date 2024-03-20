@@ -17,7 +17,7 @@ const addFavorites = (email: string, id: string) => {
         payload: favorites,
       });
     } catch (error) {
-      console.log("error");
+      console.error("add Favorites", error);
     }
   };
 };

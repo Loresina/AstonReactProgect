@@ -40,6 +40,7 @@
 .book-lang-date {
     grid-column: 2 / 4;
     background: $grey;
+
     @include flex(space-between, center)
 }
 
