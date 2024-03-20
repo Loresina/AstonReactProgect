@@ -4,6 +4,7 @@
     grid-template-rows: 1fr, 1fr, 1fr, 50px, 50px, 50px;
     row-gap: 20px;
     align-items: center;
+    text-align: left;
 }
 
 .grid-padding {
@@ -33,16 +34,18 @@
 }
 
 .book-pages {
-    grid-column: 2 / 4;
-}
-
-.book-lang {
     grid-column: 2 / 3;
+}
+
+.book-lang-date {
+    grid-column: 2 / 4;
     background: $grey;
+    @include flex(space-between, center)
 }
 
 
-.book-date {
+.book-like {
+    position: relative;
     grid-column: 3 / 4;
     background: $grey;
 }

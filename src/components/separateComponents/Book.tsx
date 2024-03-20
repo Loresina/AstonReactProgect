@@ -2,6 +2,7 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 
+import { LikeButton } from "./LikeButton";
 import { Loading } from "./Loading";
 import { useGetBookByIdQuery } from "../../slices/bookSearchApi";
 import { normDataBook } from "../_normDataBook";
@@ -46,18 +47,23 @@ const Book = (): React.JSX.Element => {
               ? book.authors
               : book.authors.map((author) => `${author}, `)}
           </span>
+          <div className="book-like">
+            <LikeButton id={id} />
+          </div>
           <span className="book-pages grid-padding">
             <b>Page count: </b>
             {book.printedPageCount}
           </span>
-          <span className="book-lang grid-padding">
-            <b>Language: </b>
-            {book.language}
-          </span>
-          <span className="book-date grid-padding">
-            <b>Published date: </b>
-            {book.publishedDate}
-          </span>
+          <div className="book-lang-date grid-padding">
+            <span>
+              <b>Language: </b>
+              {book.language}
+            </span>
+            <span>
+              <b>Published date: </b>
+              {book.publishedDate}
+            </span>
+          </div>
         </div>
       </div>
     </section>
