@@ -1,29 +1,19 @@
 import type { OneBookInfo } from "../types/dataTypes";
 
-const normDataBook = (item: OneBookInfo): OneBookInfo => {
-  const {
-    authors,
-    imageLinks,
-    title,
-    description,
-    language,
-    printedPageCount,
-    publishedDate,
-  } = item;
+const normDataBook = (item: Partial<OneBookInfo>): OneBookInfo => {
+  const currentAuthors = item.authors ?? ["author not specified"];
 
-  const currentAuthors = authors ?? ["author not specified"];
+  const currentTitle = item.title ?? "no title";
 
-  const currentTitle = title ?? "no title";
-
-  const сurrentImageLinks = imageLinks ?? {
+  const сurrentImageLinks = item.imageLinks ?? {
     smallThumbnail: "",
     thumbnail: "",
   };
 
-  const currentDescription = description ?? "no description";
-  const currentLanguage = language ?? "language not specified";
-  const currentPrintedPageCount = printedPageCount ?? "no page count";
-  const currentPublishedDate = publishedDate ?? "no   publishedDate,";
+  const currentDescription = item.description ?? "no description";
+  const currentLanguage = item.language ?? "language not specified";
+  const currentPrintedPageCount = item.printedPageCount ?? 0;
+  const currentPublishedDate = item.publishedDate ?? "no   publishedDate,";
 
   return {
     authors: currentAuthors,

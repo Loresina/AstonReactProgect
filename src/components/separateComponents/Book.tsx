@@ -9,13 +9,9 @@ const Book = (): React.JSX.Element => {
   const id = useParams().id ?? "";
   console.log("книга id", id);
 
-  const { data, isLoading } = useGetBookByIdQuery(id);
+  const { data } = useGetBookByIdQuery(id);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  const book = normDataBook(data);
+  const book = normDataBook(data ?? {});
 
   return (
     <section className="wrapper">
@@ -32,9 +28,9 @@ const Book = (): React.JSX.Element => {
           </span>
           <span className="book-authors grid-padding">
             <b>Authors: </b>
-            {data?.authors.length === 1
+            {book.authors.length === 1
               ? book.authors
-              : book.authors.map((author) => `${author},`)}
+              : book.authors.map((author) => `${author}, `)}
           </span>
           <span className="book-pages grid-padding">
             <b>Page count: </b>
