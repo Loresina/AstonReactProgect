@@ -16,7 +16,6 @@ const renderInput = (
   formik: any,
   label: string,
 ): React.JSX.Element => {
-  // console.log(formik);
   return (
     <div className="user-form-input">
       <label htmlFor={inputName}>

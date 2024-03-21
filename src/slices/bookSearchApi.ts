@@ -14,7 +14,7 @@ export const bookSearchApi = createApi({
       query: () => ({
         url: "",
         params: {
-          q: "intitle:flower",
+          q: "intitle:flowers",
           orderBy: "newest",
           key,
         },
