@@ -87,6 +87,7 @@ export const SearchBar = (): React.JSX.Element => {
           value={inputValue}
           ref={inputFocus}
           placeholder="Start searching"
+          required
         />
 
         {inputValue.length > 2 && isSuggestions ? (

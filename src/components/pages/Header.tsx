@@ -8,7 +8,7 @@ import { NotAuthNav } from "../separateComponents/headerNav/NotAuthNav";
 import { SearchBar } from "../separateComponents/SearchBar";
 
 const Header = (): React.JSX.Element => {
-  const { logStatus } = useAuth();
+  const { loginStatus } = useAuth();
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 
@@ -20,7 +20,7 @@ const Header = (): React.JSX.Element => {
         </a>
         <SearchBar />
 
-        <nav className="nav">{logStatus ? <AuthNav /> : <NotAuthNav />}</nav>
+        <nav className="nav">{loginStatus ? <AuthNav /> : <NotAuthNav />}</nav>
         <button
           className="theme-button"
           onClick={() => {

@@ -9,9 +9,9 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute: FC<PrivateRouteProps> = ({ Component }) => {
-  const { logStatus } = useAuth();
+  const { loginStatus } = useAuth();
 
-  return logStatus ? <Component /> : <Navigate to="/" />;
+  return loginStatus ? <Component /> : <Navigate to="/" />;
 };
 
 export default PrivateRoute;

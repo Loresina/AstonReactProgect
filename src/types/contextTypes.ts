@@ -1,5 +1,5 @@
 interface AuthContType {
-  logStatus: boolean;
+  loginStatus: boolean;
   logIn: () => void;
   logOut: () => void;
 }

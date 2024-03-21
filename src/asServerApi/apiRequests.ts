@@ -59,10 +59,6 @@ const fetchPostNewUser = async (
   });
 };
 
-// здесь (во всеx функциях этого модуля) линтер не даёт мне вернуть промис просто из функции,
-// заставляет обернуть его в async/ await
-// ничего не пишет, просто сам подставляет  async/ await !
-
 const fetchGetFavorites = async (email: string): Promise<string[]> => {
   return await new Promise((resolve, reject) => {
     if (localStorage.getItem("usersExist") === null) {
@@ -95,12 +91,9 @@ const fetchPostFavorites = async (
     if (usersExist !== null) {
       const usersExistObj: UsersAPI = JSON.parse(usersExist);
 
-      console.log("Я в  fetchPostFavorites", email, usersExistObj);
-
       const favorites = usersExistObj[email].favorites;
 
       if (favorites.includes(id)) {
-        console.log("Это уже есть, удаляем");
         const newFavorites = usersExistObj[email].favorites.filter(
           (item) => item !== id,
         );
@@ -108,8 +101,6 @@ const fetchPostFavorites = async (
       } else {
         usersExistObj[email].favorites.push(id);
       }
-
-      console.log("usersExistObj", usersExistObj);
 
       localStorage.setItem("usersExist", JSON.stringify(usersExistObj));
 

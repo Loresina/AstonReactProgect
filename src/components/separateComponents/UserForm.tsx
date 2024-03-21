@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
@@ -13,10 +13,8 @@ import type { RootState } from "../../types/dataTypes";
 
 const UserForm = ({ title }: { title: string }): React.JSX.Element => {
   const navigate = useNavigate();
-  const inputFocus = useRef<HTMLInputElement>(null);
   const { logIn } = useAuth();
   const dispatch = useAppDispatch();
-  // const dispatch = useDispatch();
   const authStatus = useSelector(
     (state: RootState) => state.userInfo.authStatus,
   );
@@ -24,10 +22,6 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
   const [auth, setAuth] = useState(authStatus);
 
   useEffect(() => {
-    if (inputFocus.current !== null) {
-      inputFocus.current.focus();
-    }
-
     setAuth(authStatus);
   }, [authStatus]);
 
@@ -56,12 +50,10 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
       const password = values.password;
       switch (title) {
         case "Sign Up":
-          console.log("Отправляю нового юзера на регистрацию", email);
           void dispatch(addNewUser(email, password, logIn, navigate));
           break;
 
         case "Sign In":
-          console.log("Регистрирую юзера", email);
           void dispatch(checkAuth(email, password, logIn, navigate));
           break;
 
@@ -85,7 +77,6 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
                 type="text"
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                ref={inputFocus}
                 placeholder="Enter your name"
                 onBlur={formik.handleBlur}
               />
@@ -144,11 +135,13 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
 
             {title === "Sign Up" ? (
               <span>
-                Already registered? <a href="./signIn">Sign in</a>
+                Already registered? <br />
+                <a href="/onSign">Sign in</a>
               </span>
             ) : (
               <span>
-                You do not have an account? <a href="./signUp">Sign up</a>
+                You do not have an account? <br />
+                <a href="/signUp">Sign up</a>
               </span>
             )}
           </form>

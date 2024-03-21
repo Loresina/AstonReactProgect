@@ -1,7 +1,5 @@
 import { fetchGetUserAuth } from "../../asServerApi/apiRequests";
 
-// вопрос по типизации - описание функций из библиотеки navigate
-
 const checkAuth = (
   email: string,
   password: string,
@@ -24,7 +22,6 @@ const checkAuth = (
         type: "userInfo/setName",
         payload: email,
       });
-      // здесь же - установка favorites, searchHistory
     } catch (error) {
       dispatch({
         type: "userInfo/authStatus",

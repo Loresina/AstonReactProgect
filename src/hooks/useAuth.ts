@@ -12,10 +12,10 @@ import {
 import { type AuthContType } from "../types/contextTypes";
 
 const useAuth = (): AuthContType => {
-  const { logStatus } = useContext(AuthContext);
+  const { loginStatus } = useContext(AuthContext);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (logStatus) {
+    if (loginStatus) {
       const login = localStorage.getItem("currentUser");
       if (login !== null) {
         void dispatch(getFavorites(login));
@@ -26,7 +26,7 @@ const useAuth = (): AuthContType => {
       dispatch(setFavorites([]));
       dispatch(setSearchHistory([]));
     }
-  }, [logStatus]);
+  }, [loginStatus]);
   return useContext(AuthContext);
 };
 
