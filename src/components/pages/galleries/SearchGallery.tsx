@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -15,7 +15,9 @@ const SearchGallery = (): React.JSX.Element => {
   const query = useParams().query ?? "";
   const { data, error, isLoading } = useGetBooksSearchQuery(query);
 
-  dispatch(setSearchInput(query));
+  useEffect(() => {
+    dispatch(setSearchInput(query));
+  }, [query]);
 
   if (isLoading) {
     return <Loading />;

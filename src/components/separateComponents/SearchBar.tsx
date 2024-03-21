@@ -17,8 +17,7 @@ export const SearchBar = (): React.JSX.Element => {
     (state: RootState) => state.searchInput.searchInput,
   );
 
-  console.log("HHHHHH", "SearchBar", searchInput);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(searchInput);
   const [isSuggestions, setIsSuggestions] = useState(false);
   const debouncedValue = useDebounce(inputValue, 500);
   const authName = useSelector((state: RootState) => state.userInfo.authName);

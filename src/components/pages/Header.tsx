@@ -12,9 +12,6 @@ const Header = (): React.JSX.Element => {
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  // const login = localStorage.getItem("currentUser");
-  // console.log("logStatus из Head =>", logStatus, "currentUser =>", login);
-
   return (
     <header className="wrapper">
       <div className="container header">
