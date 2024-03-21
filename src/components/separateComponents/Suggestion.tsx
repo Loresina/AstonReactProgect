@@ -9,12 +9,13 @@ const Suggestions = ({
   openBook: (id: string) => void;
   setIsSuggestions: (isSuggestions: boolean) => void;
 }): React.JSX.Element => {
-  const { data } = useGetBooksSearchQuery(query);
+  const { data, isLoading } = useGetBooksSearchQuery(query);
 
   const books = normData(data?.items ?? []);
 
   return (
     <div className="suggestion">
+      {isLoading ? <span>Loading...</span> : null}
       {books.map((book, index) => (
         <div
           key={index}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { type FormikProps, useFormik } from "formik";
+import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -11,17 +11,12 @@ import { addNewUser } from "../../slices/signUser/addNewUser";
 import { checkAuth } from "../../slices/signUser/checkAuth";
 import type { RootState } from "../../types/dataTypes";
 
-interface FormValues {
-  email: string;
-  password: string;
-  confirmPassword?: string;
-}
-
 const renderInput = (
-  inputName: keyof FormValues,
-  formik: FormikProps<FormValues>,
+  inputName: string,
+  formik: any,
   label: string,
 ): React.JSX.Element => {
+  // console.log(formik);
   return (
     <div className="user-form-input">
       <label htmlFor={inputName}>
