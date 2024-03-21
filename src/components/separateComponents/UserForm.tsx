@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useFormik } from "formik";
+import { type FormikProps, useFormik } from "formik";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -10,6 +10,40 @@ import useAuth from "../../hooks/useAuth";
 import { addNewUser } from "../../slices/signUser/addNewUser";
 import { checkAuth } from "../../slices/signUser/checkAuth";
 import type { RootState } from "../../types/dataTypes";
+
+interface FormValues {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
+
+const renderInput = (
+  inputName: keyof FormValues,
+  formik: FormikProps<FormValues>,
+  label: string,
+): React.JSX.Element => {
+  return (
+    <div className="user-form-input">
+      <label htmlFor={inputName}>
+        {label} {inputName}
+      </label>
+      <input
+        id={inputName}
+        name={inputName}
+        type="text"
+        onChange={formik.handleChange}
+        value={formik.values[inputName]}
+        placeholder={`Enter your ${inputName}`}
+        onBlur={formik.handleBlur}
+      />
+
+      {formik.touched[inputName] !== undefined &&
+      formik.errors[inputName] !== undefined ? (
+        <span className="validation-error">{formik.errors[inputName]}</span>
+      ) : null}
+    </div>
+  );
+};
 
 const UserForm = ({ title }: { title: string }): React.JSX.Element => {
   const navigate = useNavigate();
@@ -69,65 +103,13 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
         <div className="user-form">
           <h1>{title}</h1>
           <form onSubmit={formik.handleSubmit}>
-            <div className="user-form-input">
-              <label htmlFor="email">Enter your name</label>
-              <input
-                id="email"
-                name="email"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-                placeholder="Enter your name"
-                onBlur={formik.handleBlur}
-              />
+            {renderInput("email", formik, "Enter your")}
 
-              {formik.touched.email !== undefined &&
-              formik.errors.email !== undefined ? (
-                <span className="validation-error">{formik.errors.email}</span>
-              ) : null}
-            </div>
+            {renderInput("password", formik, "Enter your")}
 
-            <div className="user-form-input">
-              <label htmlFor="password">Enter your password</label>
-              <input
-                id="password"
-                name="password"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-                placeholder="Enter your password"
-                onBlur={formik.handleBlur}
-              />
-
-              {formik.touched.password !== undefined &&
-              formik.errors.password !== undefined ? (
-                <span className="validation-error">
-                  {formik.errors.password}
-                </span>
-              ) : null}
-            </div>
-
-            {title === "Sign Up" ? (
-              <div className="user-form-input">
-                <label htmlFor="confirmPassword">Confirm your password</label>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="text"
-                  onChange={formik.handleChange}
-                  value={formik.values.confirmPassword}
-                  placeholder="Confirm your password"
-                  onBlur={formik.handleBlur}
-                />
-
-                {formik.touched.confirmPassword !== undefined &&
-                formik.errors.confirmPassword !== undefined ? (
-                  <span className="validation-error">
-                    {formik.errors.confirmPassword}
-                  </span>
-                ) : null}
-              </div>
-            ) : null}
+            {title === "Sign Up"
+              ? renderInput("confirmPassword", formik, "Confirm your")
+              : null}
 
             {auth === "unsuccess" ? <span>{authError}</span> : null}
 

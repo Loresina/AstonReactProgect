@@ -14,19 +14,10 @@ const checkAuth = (
       localStorage.setItem("currentUser", email);
       logIn();
       navigate("/");
-      dispatch({
-        type: "userInfo/authStatus",
-        payload: "success",
-      });
-      dispatch({
-        type: "userInfo/setName",
-        payload: email,
-      });
+      dispatch({ type: "userInfo/authStatus", payload: "success" });
+      dispatch({ type: "userInfo/setName", payload: email });
     } catch (error) {
-      dispatch({
-        type: "userInfo/authStatus",
-        payload: "unsuccess",
-      });
+      dispatch({ type: "userInfo/authStatus", payload: "unsuccess" });
       dispatch({
         type: "userInfo/setError",
         payload: "Sign in error: wrong email or password.",
