@@ -14,7 +14,6 @@ const removeSearchHistory = (email: string, date: string) => {
       await fetchPutSearchHistory(email, date);
       const searchHistory = await fetchGetSearchHistory(email);
 
-      console.log("searchHistory из fetchGetSearchHistory", searchHistory);
       dispatch({
         type: "userInfo/setSearchHistory",
         payload: searchHistory,

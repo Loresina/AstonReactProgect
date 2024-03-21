@@ -23,7 +23,7 @@
         "prettier/prettier": "error",
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
-        "no-console": "error",
+        "no-console": ["error", { "allow": ["warn", "error"] }],
         "react/jsx-indent": ["warn", 2],
         "react/jsx-curly-spacing": "warn",
         "curly": ["error", "all"],

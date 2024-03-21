@@ -14,7 +14,6 @@ const addSearchHistory = (email: string, searchQuery: string, date: string) => {
       await fetchPostSearchHistory(email, searchQuery, date);
       const searchHistory = await fetchGetSearchHistory(email);
 
-      console.log("searchHistory из fetchGetSearchHistory", searchHistory);
       dispatch({
         type: "userInfo/setSearchHistory",
         payload: searchHistory,

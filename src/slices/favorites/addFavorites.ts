@@ -11,7 +11,6 @@ const addFavorites = (email: string, id: string) => {
       await fetchPostFavorites(email, id);
       const favorites = await fetchGetFavorites(email);
 
-      console.log("favorites", favorites);
       dispatch({
         type: "userInfo/setFavorites",
         payload: favorites,
