@@ -10,19 +10,27 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { addSearchHistory } from "../../slices/searchHistory/addSearchHistory";
 import type { RootState } from "../../types/dataTypes";
 
-const SearchBar = (): React.JSX.Element => {
+export const SearchBar = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const searchInput = useSelector(
+    (state: RootState) => state.searchInput.searchInput,
+  );
+
+  console.log("HHHHHH", "SearchBar", searchInput);
   const [inputValue, setInputValue] = useState("");
-  const [isSuggestions, setIsSuggestions] = useState(true);
+  const [isSuggestions, setIsSuggestions] = useState(false);
   const debouncedValue = useDebounce(inputValue, 500);
   const authName = useSelector((state: RootState) => state.userInfo.authName);
+
   const inputFocus = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (inputFocus.current !== null) {
       inputFocus.current.focus();
     }
+
+    setInputValue(searchInput);
 
     const handleClickOutside = (): void => {
       setIsSuggestions(false);
@@ -33,7 +41,7 @@ const SearchBar = (): React.JSX.Element => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [isSuggestions]);
+  }, [searchInput]);
 
   const openBook = (id: string): void => {
     navigate(`/book/${encodeURIComponent(id)}`);
@@ -93,5 +101,3 @@ const SearchBar = (): React.JSX.Element => {
     </form>
   );
 };
-
-export { SearchBar };

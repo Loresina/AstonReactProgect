@@ -34,6 +34,9 @@ interface RootState {
     authName: string;
     error: string;
   };
+  searchInput: {
+    searchInput: string;
+  };
 }
 
 interface CardProps {
