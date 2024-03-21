@@ -38,7 +38,7 @@
 - [x] Используются слайсы: [userDataSlice](https://github.com/Loresina/AstonReactProgect/blob/main/src/slices/usersDataSlice.ts)
 - [x] Кастомная мидлвара - createListenerMiddleware: [loginMiddle](https://github.com/Loresina/AstonReactProgect/blob/main/src/slices/loginMiddle.ts)
 - [x] Используется RTK Query: [bookSearchApi](https://github.com/Loresina/AstonReactProgect/blob/main/src/slices/bookSearchApi.ts)
-- [x] Используется Transforming Responses: [normData]()https://github.com/Loresina/AstonReactProgect/blob/main/src/components/_normData.ts, [transformResponse](https://github.com/Loresina/AstonReactProgect/blob/main/src/slices/bookSearchApi.ts)
+- [x] Используется Transforming Responses: [normData](https://github.com/Loresina/AstonReactProgect/blob/main/src/components/_normData.ts), [transformResponse](https://github.com/Loresina/AstonReactProgect/blob/main/src/slices/bookSearchApi.ts)
 
 ### 2 уровень (необязательный)
 - [x] Использование TypeScript.

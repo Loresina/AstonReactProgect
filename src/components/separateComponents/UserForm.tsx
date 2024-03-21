@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useFormik } from "formik";
+import { type FormikValues, useFormik } from "formik";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -13,7 +13,7 @@ import type { RootState } from "../../types/dataTypes";
 
 const renderInput = (
   inputName: string,
-  formik: any,
+  formik: FormikValues,
   label: string,
 ): React.JSX.Element => {
   return (
