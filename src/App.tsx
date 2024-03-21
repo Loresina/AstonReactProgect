@@ -9,7 +9,8 @@ import { Login } from "./components/pages/SignIn";
 import { Registration } from "./components/pages/SignUp";
 import { Loading } from "./components/separateComponents/Loading";
 import { NotFound } from "./components/separateComponents/NotFound";
-import { AuthProvider } from "./context/authProvider";
+import { AuthProvider } from "./context/authContext/authProvider";
+import { ThemeProvider } from "./context/themeContext/themeProvider";
 
 const FavoritesGallery = lazy(
   async () => await import("./components/pages/galleries/FavoritesGallery"),
@@ -32,23 +33,25 @@ const App = (): React.JSX.Element => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Toaster />
-        <MyErrorBoundary>
-          <Header />
+        <ThemeProvider>
+          <Toaster />
+          <MyErrorBoundary>
+            <Header />
 
-          <Suspense fallback={<Loading />}>
-            <Routes>
-              <Route path="/" element={<MainGallery />} />
-              <Route path="/search/:query" element={<SearchGallery />} />
-              <Route path="/book/:id" element={<Book />} />
-              <Route path="/signIn" element={<Login />} />
-              <Route path="/signUp" element={<Registration />} />
-              <Route path="/favorites" element={<FavoritesGallery />} />
-              <Route path="/searchHistory" element={<SearchHistory />} />
-              <Route path="/*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </MyErrorBoundary>
+            <Suspense fallback={<Loading />}>
+              <Routes>
+                <Route path="/" element={<MainGallery />} />
+                <Route path="/search/:query" element={<SearchGallery />} />
+                <Route path="/book/:id" element={<Book />} />
+                <Route path="/signIn" element={<Login />} />
+                <Route path="/signUp" element={<Registration />} />
+                <Route path="/favorites" element={<FavoritesGallery />} />
+                <Route path="/searchHistory" element={<SearchHistory />} />
+                <Route path="/*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </MyErrorBoundary>
+        </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
   );

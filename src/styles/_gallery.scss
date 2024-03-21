@@ -1,5 +1,6 @@
 .gallery {
     @include flex(flex-start, center);
+    min-height: 80vh;
     flex-direction: column;
     gap: 20px;
 }
@@ -9,4 +10,13 @@
     gap: 30px;
     flex-wrap: wrap;
     padding-top: 15px;
+}
+
+.book-theme {
+    background-image: url('../assets/books.svg');
+    background-size: 650px;
+}
+
+.main-theme {
+    background: $white;
 }

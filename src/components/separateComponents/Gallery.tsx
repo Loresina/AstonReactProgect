@@ -1,4 +1,7 @@
+import { useContext, useEffect, useState } from "react";
+
 import { Card } from "./Card";
+import ThemeContext from "../../context/themeContext/themeContext";
 import type { StateBookInfo } from "../../types/dataTypes";
 
 const Gallery = ({
@@ -10,9 +13,16 @@ const Gallery = ({
   message: string;
   books: StateBookInfo[];
 }): React.JSX.Element => {
+  const { theme } = useContext(ThemeContext);
+  const [currentTheme, setCurrentTheme] = useState(theme);
+
+  useEffect(() => {
+    setCurrentTheme(theme);
+  }, [theme]);
+
   return (
     <section className="wrapper">
-      <div className="container gallery">
+      <div className={`container gallery ${currentTheme}`}>
         <div>
           <h1>{title}</h1>
         </div>

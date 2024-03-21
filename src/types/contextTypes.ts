@@ -4,4 +4,9 @@ interface AuthContType {
   logOut: () => void;
 }
 
-export type { AuthContType };
+interface ThemeContType {
+  theme: string;
+  toggleTheme: () => void;
+}
+
+export type { AuthContType, ThemeContType };

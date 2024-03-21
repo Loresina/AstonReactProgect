@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { useAppDispatch } from "./useAppDispatch";
-import AuthContext from "../context/authContext";
+import AuthContext from "../context/authContext/authContext";
 import { getFavorites } from "../slices/favorites/getFavorites";
 import { getSearchHistory } from "../slices/searchHistory/getSearchHistory";
 import {
