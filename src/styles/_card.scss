@@ -22,7 +22,7 @@
 }
 
 .description {
-    @include flex(space-between, center);
+    @include flex(space-between, flex-start);
     flex-direction: column;
     gap: 15px;
 

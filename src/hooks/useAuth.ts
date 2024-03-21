@@ -16,7 +16,6 @@ const useAuth = (): AuthContType => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (logStatus) {
-      console.log("Авторизейшн хук сработал! Favorites теперь в стейте");
       const login = localStorage.getItem("currentUser");
       if (login !== null) {
         void dispatch(getFavorites(login));

@@ -7,6 +7,7 @@ import MyErrorBoundary from "./components/ErrorBoundary";
 import { Header } from "./components/pages/Header";
 import { Login } from "./components/pages/SignIn";
 import { Registration } from "./components/pages/SignUp";
+import PrivateRoute from "./components/PrivateRoute";
 import { Loading } from "./components/separateComponents/Loading";
 import { NotFound } from "./components/separateComponents/NotFound";
 import { AuthProvider } from "./context/authContext/authProvider";
@@ -45,9 +46,17 @@ const App = (): React.JSX.Element => {
                 <Route path="/book/:id" element={<Book />} />
                 <Route path="/signIn" element={<Login />} />
                 <Route path="/signUp" element={<Registration />} />
-                <Route path="/favorites" element={<FavoritesGallery />} />
-                <Route path="/searchHistory" element={<SearchHistory />} />
                 <Route path="/*" element={<NotFound />} />
+
+                <Route
+                  path="/favorites"
+                  element={<PrivateRoute Component={FavoritesGallery} />}
+                />
+
+                <Route
+                  path="/searchHistory"
+                  element={<PrivateRoute Component={SearchHistory} />}
+                />
               </Routes>
             </Suspense>
           </MyErrorBoundary>

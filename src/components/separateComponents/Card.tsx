@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({ one }) => {
 
       <div className="description">
         <span>
-          <b>Title:</b> {one.title}
+          <b>Title:</b> {`${one.title.slice(0, 55)}...`}
         </span>
         <span>
           <b>Authors:</b>{" "}
