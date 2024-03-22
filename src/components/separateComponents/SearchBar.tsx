@@ -31,6 +31,7 @@ export const SearchBar = (): React.JSX.Element => {
     }
 
     setInputValue(searchInput);
+    setIsSuggestions(false);
 
     const handleClickOutside = (e: MouseEvent): void => {
       if ((e.target as HTMLElement).id === "searchTitle") {
