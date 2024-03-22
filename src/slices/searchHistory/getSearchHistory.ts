@@ -1,4 +1,7 @@
-import { fetchGetSearchHistory } from "../../asServerApi/apiRequests";
+import { routes } from "../../routes/remoteStoreRoutes";
+import type { Routes } from "../../routes/remoteStoreRoutes";
+
+const storeType: keyof Routes = import.meta.env.VITE_REMOTE_STORE;
 
 const getSearchHistory = (email: string) => {
   return async (
@@ -8,7 +11,7 @@ const getSearchHistory = (email: string) => {
     }) => void,
   ) => {
     try {
-      const searchHistory = await fetchGetSearchHistory(email);
+      const searchHistory = await routes[storeType].getSearchHistory(email);
 
       dispatch({
         type: "userInfo/setSearchHistory",

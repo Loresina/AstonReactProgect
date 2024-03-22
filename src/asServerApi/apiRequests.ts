@@ -187,3 +187,11 @@ export {
   fetchGetSearchHistory,
   fetchPutSearchHistory,
 };
+
+export type FetchPostFavorites = typeof fetchPostFavorites;
+export type FetchGetFavorites = typeof fetchGetFavorites;
+export type FetchPostSearchHistory = typeof fetchPostSearchHistory;
+export type FetchGetSearchHistory = typeof fetchGetSearchHistory;
+export type FetchPutSearchHistory = typeof fetchPutSearchHistory;
+export type FetchGetUserAuth = typeof fetchGetUserAuth;
+export type FetchPostNewUser = typeof fetchPostNewUser;

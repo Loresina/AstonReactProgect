@@ -1,4 +1,7 @@
-import { fetchGetUserAuth } from "../../asServerApi/apiRequests";
+import { routes } from "../../routes/remoteStoreRoutes";
+import type { Routes } from "../../routes/remoteStoreRoutes";
+
+const storeType: keyof Routes = import.meta.env.VITE_REMOTE_STORE;
 
 const checkAuth = (
   email: string,
@@ -10,7 +13,7 @@ const checkAuth = (
     dispatch: (payload: { type: string; payload: string }) => void,
   ) => {
     try {
-      await fetchGetUserAuth(email, password);
+      await routes[storeType].getUserAuth(email, password);
       localStorage.setItem("currentUser", email);
       logIn();
       navigate("/");
