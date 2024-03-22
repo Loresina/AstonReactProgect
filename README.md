@@ -42,7 +42,7 @@
 
 ### 2 уровень (необязательный)
 - [x] Использование TypeScript.
-- [x] Низкая связанность клиентского кода с хранилищем - [REMOTE_STORE](https://github.com/Loresina/AstonReactProgect/commit/27914782d0dd003cf005f435253534f8ef4da391)
+- [x] Низкая связанность клиентского кода с хранилищем - [REMOTE_STORE](https://github.com/Loresina/AstonReactProgect/commit/7a6a7505ae539584326c01390d29369128d2f89e)
 - [x] Настроен CI/CD.
 - [x] Подключен сервис для анализа кода [Code Climate](https://codeclimate.com/github/Loresina/AstonReactProgect/maintainability)
 
