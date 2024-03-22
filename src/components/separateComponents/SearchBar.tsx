@@ -8,7 +8,7 @@ import { Suggestions } from "../../components/separateComponents/Suggestion";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useDebounce } from "../../hooks/useDebounce";
 import {
-  getAuthErrorState,
+  getUserNameState,
   getSearchInputState,
 } from "../../slices/getStateVars/getStateVars";
 import { addSearchHistory } from "../../slices/searchHistory/addSearchHistory";
@@ -17,7 +17,7 @@ export const SearchBar = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const searchInput = useSelector(getSearchInputState);
-  const authName = useSelector(getAuthErrorState);
+  const authName = useSelector(getUserNameState);
 
   const [inputValue, setInputValue] = useState(searchInput);
   const [isSuggestions, setIsSuggestions] = useState(false);

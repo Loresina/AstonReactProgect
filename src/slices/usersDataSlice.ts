@@ -5,7 +5,7 @@ const initialState = {
   searchHistory: [],
   authStatus: "",
   authName: "",
-  error: "massage",
+  error: "",
 };
 
 const userDataSlice = createSlice({
