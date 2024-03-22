@@ -2,15 +2,16 @@ import { useSelector } from "react-redux";
 
 import iconDel from "../../assets/iconDel.svg";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
+import {
+  getHistoryState,
+  getUserNameState,
+} from "../../slices/getStateVars/getStateVars";
 import { removeSearchHistory } from "../../slices/searchHistory/removeSearchHistory";
-import type { RootState } from "../../types/dataTypes";
 
 const SearchHistory = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
-  const history = useSelector(
-    (state: RootState) => state.userInfo.searchHistory,
-  );
-  const userName = useSelector((state: RootState) => state.userInfo.authName);
+  const history = useSelector(getHistoryState);
+  const userName = useSelector(getUserNameState);
 
   const removeRow = (date: string): void => {
     void dispatch(removeSearchHistory(userName, date));

@@ -7,15 +7,16 @@ import { useNavigate } from "react-router-dom";
 import heart from "../../assets/iconHeard.svg";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { addFavorites } from "../../slices/favorites/addFavorites";
-import type { RootState } from "../../types/dataTypes";
+import {
+  getFavoritesState,
+  getUserNameState,
+} from "../../slices/getStateVars/getStateVars";
 
 const LikeButton: React.FC<{ id: string }> = ({ id }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const authName = useSelector((state: RootState) => state.userInfo.authName);
-  const favorites: string[] = useSelector(
-    (state: RootState) => state.userInfo.favorites,
-  );
+  const authName = useSelector(getUserNameState);
+  const favorites: string[] = useSelector(getFavoritesState);
 
   const addToFavorites = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation();

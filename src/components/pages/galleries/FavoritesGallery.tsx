@@ -3,22 +3,22 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { setMessage } from "./_setMessage";
-import type { RootState, BooksInfo } from "../../../types/dataTypes";
+import getBookRoute from "../../../routes/getBookRoute";
+import { getFavoritesState } from "../../../slices/getStateVars/getStateVars";
+import type { BooksInfo } from "../../../types/dataTypes";
 import { normData } from "../../_normData";
 import { Gallery } from "../../separateComponents/Gallery";
 import { Loading } from "../../separateComponents/Loading";
 
 const FavoritesGallery = (): React.JSX.Element => {
-  const favorites = useSelector((state: RootState) => state.userInfo.favorites);
+  const favorites = useSelector(getFavoritesState);
 
   const [items, setItems] = useState<BooksInfo[]>([]);
   const [error, setError] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(true);
 
   const getBook = async (id: string): Promise<BooksInfo> => {
-    const resp = await fetch(
-      `https://www.googleapis.com/books/v1/volumes/${id}`,
-    );
+    const resp = await fetch(`${getBookRoute}${id}`);
     const book = await resp.json();
     return book;
   };

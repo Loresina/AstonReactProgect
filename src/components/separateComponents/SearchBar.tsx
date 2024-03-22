@@ -7,20 +7,21 @@ import search from "../../assets/iconSearch.svg";
 import { Suggestions } from "../../components/separateComponents/Suggestion";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useDebounce } from "../../hooks/useDebounce";
+import {
+  getAuthErrorState,
+  getSearchInputState,
+} from "../../slices/getStateVars/getStateVars";
 import { addSearchHistory } from "../../slices/searchHistory/addSearchHistory";
-import type { RootState } from "../../types/dataTypes";
 
 export const SearchBar = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const searchInput = useSelector(
-    (state: RootState) => state.searchInput.searchInput,
-  );
+  const searchInput = useSelector(getSearchInputState);
+  const authName = useSelector(getAuthErrorState);
 
   const [inputValue, setInputValue] = useState(searchInput);
   const [isSuggestions, setIsSuggestions] = useState(false);
   const debouncedValue = useDebounce(inputValue, 500);
-  const authName = useSelector((state: RootState) => state.userInfo.authName);
 
   const inputFocus = useRef<HTMLInputElement>(null);
 

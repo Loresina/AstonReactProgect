@@ -7,9 +7,12 @@ import * as yup from "yup";
 
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import useAuth from "../../hooks/useAuth";
+import {
+  getAuthStatus,
+  getAuthErrorState,
+} from "../../slices/getStateVars/getStateVars";
 import { addNewUser } from "../../slices/signUser/addNewUser";
 import { checkAuth } from "../../slices/signUser/checkAuth";
-import type { RootState } from "../../types/dataTypes";
 
 const renderInput = (
   inputName: string,
@@ -43,10 +46,8 @@ const UserForm = ({ title }: { title: string }): React.JSX.Element => {
   const navigate = useNavigate();
   const { logIn } = useAuth();
   const dispatch = useAppDispatch();
-  const authStatus = useSelector(
-    (state: RootState) => state.userInfo.authStatus,
-  );
-  const authError = useSelector((state: RootState) => state.userInfo.error);
+  const authStatus = useSelector(getAuthStatus);
+  const authError = useSelector(getAuthErrorState);
   const [auth, setAuth] = useState(authStatus);
 
   useEffect(() => {
