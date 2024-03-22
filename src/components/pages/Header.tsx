@@ -10,7 +10,7 @@ import { SearchBar } from "../separateComponents/SearchBar";
 const Header = (): React.JSX.Element => {
   const { loginStatus } = useAuth();
 
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme } = useContext(ThemeContext);
 
   return (
     <header className="wrapper">
