@@ -1,7 +1,6 @@
-import { routes } from "../../routes/remoteStoreRoutes";
-import type { Routes } from "../../routes/remoteStoreRoutes";
+import store from "../../routes/remoteStoreRoutes";
 
-const storeType: keyof Routes = import.meta.env.VITE_REMOTE_STORE;
+const { postStoreNewUser } = store;
 
 const addNewUser =
   (
@@ -12,7 +11,7 @@ const addNewUser =
   ) =>
   async (dispatch: (payload: { type: string; payload: string }) => void) => {
     try {
-      await routes[storeType].postNewUser(email, password);
+      await postStoreNewUser(email, password);
       localStorage.setItem("currentUser", email);
       logIn();
       navigate("/");

@@ -17,33 +17,55 @@ import type {
   FetchPostNewUser,
 } from "../asServerApi/apiRequests";
 
+const storeType = import.meta.env.VITE_REMOTE_STORE;
+
 export interface RouteFunctions {
-  postFavorites: FetchPostFavorites;
-  getFavorites: FetchGetFavorites;
-  postSearchHistory: FetchPostSearchHistory;
-  getSearchHistory: FetchGetSearchHistory;
-  putSearchHistory: FetchPutSearchHistory;
-  getUserAuth: FetchGetUserAuth;
-  postNewUser: FetchPostNewUser;
+  postStoreFavorites: FetchPostFavorites;
+  getStoreFavorites: FetchGetFavorites;
+  postStoreHistory: FetchPostSearchHistory;
+  getStoreHistory: FetchGetSearchHistory;
+  putStoreHistory: FetchPutSearchHistory;
+  getStoreUserAuth: FetchGetUserAuth;
+  postStoreNewUser: FetchPostNewUser;
 }
 
-export interface Routes {
-  ls: RouteFunctions;
-  //   firebase: RouteFunctions;
-}
-
-export const routes = {
-  ls: {
-    postFavorites: fetchPostFavorites,
-    getFavorites: fetchGetFavorites,
-    getSearchHistory: fetchGetSearchHistory,
-    postSearchHistory: fetchPostSearchHistory,
-    putSearchHistory: fetchPutSearchHistory,
-    getUserAuth: fetchGetUserAuth,
-    postNewUser: fetchPostNewUser,
-  },
-  //   firebase: {
-  //     getFavorites: () => {},
-  //     postFavorites: () => {},
-  //   },
+const ls = {
+  postStoreFavorites: fetchPostFavorites,
+  getStoreFavorites: fetchGetFavorites,
+  getStoreHistory: fetchGetSearchHistory,
+  postStoreHistory: fetchPostSearchHistory,
+  putStoreHistory: fetchPutSearchHistory,
+  getStoreUserAuth: fetchGetUserAuth,
+  postStoreNewUser: fetchPostNewUser,
 };
+
+// чтобы была имитация переключения разных сторов,
+// оставила здесь те же функции, так как firebase не реализован
+const firebase = {
+  postStoreFavorites: fetchPostFavorites,
+  getStoreFavorites: fetchGetFavorites,
+  getStoreHistory: fetchGetSearchHistory,
+  postStoreHistory: fetchPostSearchHistory,
+  putStoreHistory: fetchPutSearchHistory,
+  getStoreUserAuth: fetchGetUserAuth,
+  postStoreNewUser: fetchPostNewUser,
+};
+
+const stores = {
+  ls,
+  firebase,
+};
+
+// здесь (store === undefined), так как написать (!store) линтер не позволяет,
+// ошибка: Unexpected object value in conditional. The condition is always true
+export const getStore = (): RouteFunctions => {
+  const store = stores[storeType as keyof typeof stores];
+  if (store === undefined) {
+    throw new Error(`Store with type "${storeType}" is not defined`);
+  }
+  return store;
+};
+
+const currentStore = getStore();
+
+export default currentStore;

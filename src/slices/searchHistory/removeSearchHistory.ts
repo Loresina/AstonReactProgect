@@ -1,7 +1,6 @@
-import { routes } from "../../routes/remoteStoreRoutes";
-import type { Routes } from "../../routes/remoteStoreRoutes";
+import store from "../../routes/remoteStoreRoutes";
 
-const storeType: keyof Routes = import.meta.env.VITE_REMOTE_STORE;
+const { putStoreHistory, getStoreHistory } = store;
 
 const removeSearchHistory = (email: string, date: string) => {
   return async (
@@ -11,8 +10,8 @@ const removeSearchHistory = (email: string, date: string) => {
     }) => void,
   ) => {
     try {
-      await routes[storeType].putSearchHistory(email, date);
-      const searchHistory = await routes[storeType].getSearchHistory(email);
+      await putStoreHistory(email, date);
+      const searchHistory = await getStoreHistory(email);
 
       dispatch({
         type: "userInfo/setSearchHistory",

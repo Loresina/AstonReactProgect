@@ -1,14 +1,13 @@
-import { routes } from "../../routes/remoteStoreRoutes";
-import type { Routes } from "../../routes/remoteStoreRoutes";
+import store from "../../routes/remoteStoreRoutes";
 
-const storeType: keyof Routes = import.meta.env.VITE_REMOTE_STORE;
+const { getStoreFavorites } = store;
 
 const getFavorites = (email: string) => {
   return async (
     dispatch: (payload: { type: string; payload: string[] }) => void,
   ) => {
     try {
-      const favorites = await routes[storeType].getFavorites(email);
+      const favorites = await getStoreFavorites(email);
 
       dispatch({
         type: "userInfo/setFavorites",
