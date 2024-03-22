@@ -2,14 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { thunk } from "redux-thunk";
 
 import { bookSearchApi } from "./bookSearchApi";
-import firstReducer from "./firstSlice";
 import searchInputSlice from "./inputSlice";
 import { loginMiddle } from "./loginMiddle";
 import userDataSlice from "../slices/usersDataSlice";
 
 const store = configureStore({
   reducer: {
-    first: firstReducer,
     userInfo: userDataSlice,
     searchInput: searchInputSlice,
     [bookSearchApi.reducerPath]: bookSearchApi.reducer,

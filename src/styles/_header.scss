@@ -69,13 +69,16 @@
 
 .theme-button {
   width: 80px;
-  border-radius: 20px;
+  border-radius: 30px;
   background: $green;
   border: none;
   color: $white;
+  font-size: 16px;
+  padding: 5px;
 
   &:hover {
-    background: $grey-shadow;   
+    background: $grey-shadow; 
+    color: $dark-blue; 
   }
 
 }

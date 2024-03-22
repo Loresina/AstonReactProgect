@@ -27,7 +27,7 @@ const Header = (): React.JSX.Element => {
             toggleTheme();
           }}
         >
-          {theme}
+          change theme
         </button>
       </div>
     </header>

@@ -42,8 +42,7 @@
 
 ### 2 уровень (необязательный)
 - [x] Использование TypeScript.
-- [x] Низкая связанность клиентского кода с хранилищем - запросы к внешнему хранилищу осуществляются в функциях, подключенных к Redux Stote.
-В компонентах диспатчатся (через Thunk). [favorites](https://github.com/Loresina/AstonReactProgect/tree/main/src/slices/favorites), [signUser](https://github.com/Loresina/AstonReactProgect/tree/main/src/slices/signUser)
+- [x] Низкая связанность клиентского кода с хранилищем - [REMOTE_STORE](https://github.com/Loresina/AstonReactProgect/commit/27914782d0dd003cf005f435253534f8ef4da391)
 - [x] Настроен CI/CD.
 - [x] Подключен сервис для анализа кода [Code Climate](https://codeclimate.com/github/Loresina/AstonReactProgect/maintainability)
 
