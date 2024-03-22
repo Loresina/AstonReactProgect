@@ -7,7 +7,6 @@ const Suggestions = ({
 }: {
   query: string;
   openBook: (id: string) => void;
-  setIsSuggestions: (isSuggestions: boolean) => void;
 }): React.JSX.Element => {
   const { data, isLoading } = useGetBooksSearchQuery(query);
 

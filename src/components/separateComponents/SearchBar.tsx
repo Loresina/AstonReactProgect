@@ -32,8 +32,12 @@ export const SearchBar = (): React.JSX.Element => {
 
     setInputValue(searchInput);
 
-    const handleClickOutside = (): void => {
-      setIsSuggestions(false);
+    const handleClickOutside = (e: MouseEvent): void => {
+      if ((e.target as HTMLElement).id === "searchTitle") {
+        setIsSuggestions(true);
+      } else {
+        setIsSuggestions(false);
+      }
     };
 
     document.addEventListener("click", handleClickOutside);
@@ -85,6 +89,9 @@ export const SearchBar = (): React.JSX.Element => {
           name="searchTitle"
           type="text"
           onChange={searchFilling}
+          onFocus={() => {
+            setIsSuggestions(true);
+          }}
           value={inputValue}
           ref={inputFocus}
           placeholder="Start searching"
@@ -92,11 +99,7 @@ export const SearchBar = (): React.JSX.Element => {
         />
 
         {inputValue.length > 2 && isSuggestions ? (
-          <Suggestions
-            query={debouncedValue}
-            openBook={openBook}
-            setIsSuggestions={setIsSuggestions}
-          />
+          <Suggestions query={debouncedValue} openBook={openBook} />
         ) : null}
       </div>
     </form>
